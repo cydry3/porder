@@ -306,7 +306,7 @@ instruction_address_offset(long long int *addr)
 	if (once) {
 		once = 0;
 		base_p = *addr;
-		return base_p;
+		return 0;
 	}
 
 	return (*addr) - base_p;
@@ -316,8 +316,9 @@ void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("Instruction(addr,hex): %16llx\n",
-				instruction_address_offset(&(regs.rip)));
+		printf("Instruction(addr,hex): ");
+		printf("address:%16llx / ", regs.rip);
+		printf("offset:%16llx\n", instruction_address_offset(&(regs.rip)));
 	}
 }
 
