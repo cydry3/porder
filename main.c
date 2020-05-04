@@ -297,11 +297,27 @@ void handle_on_syscall(pid_t pid, int *signum, syscall_status *sstatus, trace_st
 	start_trace(pid, *signum, ts_status);
 }
 
+long long int
+instruction_address_offset(long long int *addr)
+{
+	static long long int base_p;
+	static char once = 1;
+
+	if (once) {
+		once = 0;
+		base_p = *addr;
+		return base_p;
+	}
+
+	return (*addr) - base_p;
+}
+
 void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("instruction: 0x%llx\n", regs.rip);
+		printf("Instruction(addr,hex): %16llx\n",
+				instruction_address_offset(&(regs.rip)));
 	}
 }
 
