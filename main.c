@@ -74,7 +74,7 @@ void print_exec_after_msg(unsigned long long int syscall_num)
 
 void print_syscall_args(struct user_regs_struct *regs)
 {
-	printf(" <- Arguments(0x%llx, 0x%llx, 0x%llx)\n",
+	printf(" <- Arguments(0x%08llx, 0x%08llx, 0x%08llx)\n",
 		   regs->rdi, regs->rsi, regs->rdx);
 }
 
@@ -89,14 +89,14 @@ void print_error_value(long long int err,
 					   unsigned long long int syscall_num)
 {
 	print_syscall_name(syscall_num);
-	printf(" ended   -> ReturnValue<Error> (0x%llx)\n", err);
+	printf(" ended   -> ReturnValue<Error> (0x%08llx)\n", err);
 }
 
 void print_return_value(unsigned long long int ret_val,
 						unsigned long long int syscall_num)
 {
 	print_syscall_name(syscall_num);
-	printf(" ended   -> ReturnValue (0x%llx)\n", ret_val);
+	printf(" ended   -> ReturnValue (0x%08llx)\n", ret_val);
 }
 
 void print_end_syscall_msg(struct user_regs_struct *regs)
@@ -311,7 +311,8 @@ instruction_address_offset(long long int *addr)
 		return 0;
 	}
 
-	return (*addr) - base_p;
+//	return (*addr) - base_p;
+	return (*addr);
 }
 
 long get_child_memory_data(pid_t pid, void *addr)
@@ -328,14 +329,14 @@ long get_child_memory_data(pid_t pid, void *addr)
 void print_child_memory_data(pid_t pid, void *addr)
 {
 	long res = get_child_memory_data(pid, addr);
-	printf("data: %16llx ", res);
+	printf("data: %08llx", res);
 }
 
 void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("%llx\n", instruction_address_offset(&(regs.rip)));
+		printf("%08llx\n", instruction_address_offset(&(regs.rip)));
 	}
 }
 
@@ -446,6 +447,7 @@ int main(int argc, char *argv[])
 	if ((pid == -1))
 		exit(1);
 
+	fprintf(stderr, "debug:child pid: %d\n", pid);
 	if (pid == 0) {
 		child_main(args);
 	} else {
