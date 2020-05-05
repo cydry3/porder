@@ -10,25 +10,27 @@ import re
 # Convertion table object
 class Addr2Asm:
     src_file = "table_addr2asm"
-    asm_line = []
+    regex_pat = []
     table_file = []
 
     def __init__(self):
         f = open(self.src_file, 'r')
         self.table_file.append(f)
+        self.regex_pat.append(re.compile('^(\w+):(.*)'))
+
+    def drop_self(self):
+        self.table_file[0].close()
 
     def print(self, addr):
         for line in self.table_file[0]:
-            m = re.match('^(\d+):(.*)', line)
+            m = self.regex_pat[0].match(line)
             if m:
                 if addr == m.group(1):
-                    self.asm_line.append(m)
-                    break
-        if len(self.asm_line) > 0:
-            m = self.asm_line[0]
-            print("%s %s" % (m.group(1), m.group(2)))
-        else:
-            print("Assembly code is Unknown (%s)" % (addr))
+                    print("%s %s" % (m.group(1), m.group(2)))
+                    self.table_file[0].seek(0)
+                    return
+        self.table_file[0].seek(0)
+        print("%s unknown" % (addr))
 
 
 # Accept 1 address, print conveted assemply line at once.
