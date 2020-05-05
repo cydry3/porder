@@ -335,12 +335,7 @@ void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("Instruction(addr,hex): ");
-		printf("address:%16llx / ", regs.rip);
-		printf("offset:%16llx  / ", instruction_address_offset(&(regs.rip)));
-
-		print_child_memory_data(pid, (void *)regs.rip);
-		printf("\n");
+		printf("%llx", instruction_address_offset(&(regs.rip)));
 	}
 }
 
