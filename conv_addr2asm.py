@@ -8,7 +8,19 @@ import sys
 import re
 
 src_file = "table_addr2asm"
-addr = sys.argv[1]
+
+addr_buf = [2]
+arglen = len(sys.argv)
+if arglen == 1:
+    addr_buf[0] = input()
+elif arglen == 2:
+    addr_buf[0] = sys.argv[1]
+else:
+    print("failed to get a address")
+    print("usage: conv_addr2asm.py [address string]")
+    sys.exit(1)
+addr = addr_buf[0]
+
 asm_line = []
 
 table_file = open(src_file, 'r')

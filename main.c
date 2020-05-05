@@ -335,7 +335,7 @@ void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("%llx", instruction_address_offset(&(regs.rip)));
+		printf("%llx\n", instruction_address_offset(&(regs.rip)));
 	}
 }
 
