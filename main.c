@@ -10,6 +10,8 @@
 #include <asm/unistd_64.h>
 #include <errno.h>
 #include <string.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 
 typedef char trace_step_status_t;
 
@@ -299,20 +301,71 @@ void handle_on_syscall(pid_t pid, int *signum, syscall_status *sstatus, trace_st
 	start_trace(pid, *signum, ts_status);
 }
 
+char *pid_to_proc_path(pid_t pid)
+{
+	static char path_buf[20];
+
+	snprintf(path_buf, 20, "/proc/%d/maps", pid);
+	return path_buf;
+}
+
+char *get_base_address(char *path_buf)
+{
+	static char procinfo_buf[16];
+
+	int fd = open(path_buf, O_RDONLY);
+	if (fd == -1) {
+		fprintf(stderr, "failed open proc file\n");
+		exit(1);
+	}
+
+	ssize_t ok;
+	char cur;
+	int i = 0;
+	while (i < 16) {
+		if (cur == '-') {
+			procinfo_buf[i-1] = '\0';
+			break;
+		}
+		ok = read(fd, (procinfo_buf + i), 1);
+		if (ok == -1) {
+			fprintf(stderr, "failed reading proc file\n",
+					path_buf);
+			close(fd);
+			exit(1);
+		}
+		cur = procinfo_buf[i];
+		i++;
+	}
+	close(fd);
+
+	return procinfo_buf;
+}
+
 long long int
-instruction_address_offset(long long int *addr)
+get_child_mem_mapped_base_address(pid_t pid)
+{
+	char *path_buf = pid_to_proc_path(pid);
+	char *proc_info = get_base_address(path_buf);
+
+	char *endptr;
+	long long int base_p = strtoll(proc_info, &endptr, 16);
+	return base_p;
+}
+
+long long int
+instruction_address_offset(long long int *addr, pid_t pid)
 {
 	static long long int base_p;
 	static char once = 1;
 
 	if (once) {
 		once = 0;
-		base_p = *addr;
+		base_p = get_child_mem_mapped_base_address(pid);
 		return 0;
 	}
 
-//	return (*addr) - base_p;
-	return (*addr);
+	return (*addr) - base_p;
 }
 
 long get_child_memory_data(pid_t pid, void *addr)
@@ -336,7 +389,7 @@ void print_instruction_on_child(pid_t pid)
 {
 	struct user_regs_struct regs;
 	if (get_user_register(&regs, pid)) {
-		printf("%08llx\n", instruction_address_offset(&(regs.rip)));
+		printf("%llx\n", instruction_address_offset(&(regs.rip), pid));
 	}
 }
 
@@ -447,7 +500,6 @@ int main(int argc, char *argv[])
 	if ((pid == -1))
 		exit(1);
 
-	fprintf(stderr, "debug:child pid: %d\n", pid);
 	if (pid == 0) {
 		child_main(args);
 	} else {
