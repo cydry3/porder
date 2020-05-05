@@ -7,32 +7,64 @@
 import sys
 import re
 
-src_file = "table_addr2asm"
+# Convertion table object
+class Addr2Asm:
+    src_file = "table_addr2asm"
+    asm_line = []
+    table_file = []
 
-addr_buf = [2]
-arglen = len(sys.argv)
-if arglen == 1:
-    addr_buf[0] = input()
-elif arglen == 2:
-    addr_buf[0] = sys.argv[1]
-else:
-    print("failed to get a address")
-    print("usage: conv_addr2asm.py [address string]")
-    sys.exit(1)
-addr = addr_buf[0]
+    def __init__(self):
+        f = open(self.src_file, 'r')
+        self.table_file.append(f)
 
-asm_line = []
+    def print(self, addr):
+        for line in self.table_file[0]:
+            m = re.match('^(\d+):(.*)', line)
+            if m:
+                if addr == m.group(1):
+                    self.asm_line.append(m)
+                    break
+        if len(self.asm_line) > 0:
+            m = self.asm_line[0]
+            print("%s %s" % (m.group(1), m.group(2)))
+        else:
+            print("Assembly code is Unknown (%s)" % (addr))
 
-table_file = open(src_file, 'r')
-for line in table_file:
-    m = re.match('^(\d+):(.*)', line)
 
-    if m:
-        if addr == m.group(1):
-            asm_line.append(m)
+# Accept 1 address, print conveted assemply line at once.
+def print_at_once(addr):
+    conv = Addr2Asm()
+    conv.print(addr)
 
-if len(asm_line) > 0:
-    m = asm_line[0]
-    print("%s %s" % (m.group(1), m.group(2)))
-else:
-    print("Assembly code is Unknown (%s)" % (addr))
+
+# Accept addresses from stdin stream, print assembly lines inititely.
+def print_stream():
+    conv = Addr2Asm()
+    while True:
+        try:
+            addr = input()
+            conv.print(addr)
+        except EOFError:
+            break
+        except:
+            print("unexpected error:", sys.exec_info())
+            raise
+
+# Entry point
+def script_main():
+    arglen = len(sys.argv)
+    if arglen == 1:
+        print_stream()
+
+    elif arglen == 2:
+        addr = sys.argv[1]
+        print_at_once(addr)
+    else:
+        print("failed to get a address")
+        print("usage: conv_addr2asm.py [address string]")
+        sys.exit(1)
+
+
+# Execute as command
+if __name__ == "__main__":
+    script_main()
