@@ -37,6 +37,7 @@ class Addr2Asm:
 def print_at_once(addr):
     conv = Addr2Asm()
     conv.print(addr)
+    conv.drop_self()
 
 
 # Accept addresses from stdin stream, print assembly lines inititely.
@@ -50,7 +51,9 @@ def print_stream():
             break
         except:
             print("unexpected error:", sys.exec_info())
+            conv.drop_self()
             raise
+    conv.drop_self()
 
 # Entry point
 def script_main():
