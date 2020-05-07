@@ -2,3 +2,4 @@ test
 *.swp
 *.o
 porder
+table_addr2asm

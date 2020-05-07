@@ -7,6 +7,7 @@ porder: $(OBJS)
 
 $(OBJS): porder.h
 
+.PHONY: test clean
 test: porder
 	./test.sh
 
