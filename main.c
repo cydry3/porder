@@ -273,22 +273,22 @@ long get_child_memory_data(pid_t pid, void *addr)
 	return res;
 }
 
-void handle_on_singlestep(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status)
+void handle_on_singlestep(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
 {
-	print_instruction_on_child(pid);
+	print_instruction_on_child(pid, post_fd);
 
 	trace_option(pid);
 	ignore_signal_number(signum);
 	start_trace(pid, *signum, ts_status);
 }
 
-void handle_sigtrap_by_tracing(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status)
+void handle_sigtrap_by_tracing(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
 {
 	if (is_trace_status_on_syscall(ts_status))
 		handle_on_syscall(pid, signum, sstatus, ts_status);
 
 	else if (is_trace_status_on_singlestep(ts_status))
-		handle_on_singlestep(pid, signum, sstatus, ts_status);
+		handle_on_singlestep(pid, signum, sstatus, ts_status, post_fd);
 
 	else {
 		fprintf(stderr, "unreachable in handling a sigtrap by tracing.\n");
@@ -312,10 +312,10 @@ int is_on_tracing(int *signum, trace_step_status_t *ts_status)
 			(is_sigtrap(signum) && (is_trace_status_on_singlestep(ts_status))));
 }
 
-void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status)
+void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
 {
 	if (is_on_tracing(signum, ts_status))
-		handle_sigtrap_by_tracing(pid, signum, sstatus, ts_status);
+		handle_sigtrap_by_tracing(pid, signum, sstatus, ts_status, post_fd);
 
 	else
 		handle_sigtrap_by_othter(pid, signum, sstatus, ts_status);
@@ -329,6 +329,8 @@ int parent_main(pid_t child_pid)
 
 	trace_step_status_t ts_status;
 	trace_status_to_singlestep(&ts_status);
+
+	int post_fd = STDOUT_FILENO;
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
 	continue_trace_option(pid);
@@ -359,7 +361,7 @@ int parent_main(pid_t child_pid)
 			// print_pid(pid);
 			// print_sig(signum);
 	
-			handle_sigtraps(pid, &signum, &sstatus, &ts_status);
+			handle_sigtraps(pid, &signum, &sstatus, &ts_status, post_fd);
 
 		} else if (WIFCONTINUED(wstatus)) {
 			print_sig(SIGCONT);
