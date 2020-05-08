@@ -15,8 +15,27 @@
 
 typedef char trace_step_status_t;
 
-void print_syscall_name(unsigned long long int s);
+// main.c
 void trace_status_to_syscall(trace_step_status_t *ts_status);
 int  is_trace_status_on_syscall(trace_step_status_t *ts_status);
 int  is_trace_status_on_singlestep(trace_step_status_t *ts_status);
+long get_child_memory_data(pid_t pid, void *addr);
 
+
+// output.c
+void print_sig(int sig);
+void print_pid(pid_t pid);
+void print_exec_after_msg(unsigned long long int syscall_num);
+void print_syscall_args(struct user_regs_struct *regs);
+void print_start_syscall_msg(struct user_regs_struct *regs);
+void print_error_value(long long int err,
+						unsigned long long int syscall_num);
+void print_return_value(unsigned long long int ret_val,
+						unsigned long long int syscall_num);
+void print_end_syscall_msg(struct user_regs_struct *regs);
+void print_regs_at_after_exec_point(pid_t pid);
+void print_regs_at_start_point(pid_t pid);
+void print_regs_at_end_point(pid_t pid);
+void print_child_memory_data(pid_t pid, void *addr);
+void print_instruction_on_child(pid_t pid);
+void print_syscall_name(unsigned long long int s);
