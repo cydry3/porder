@@ -20,6 +20,8 @@ void trace_status_to_syscall(trace_step_status_t *ts_status);
 int  is_trace_status_on_syscall(trace_step_status_t *ts_status);
 int  is_trace_status_on_singlestep(trace_step_status_t *ts_status);
 long get_child_memory_data(pid_t pid, void *addr);
+long long int
+instruction_address_offset(long long unsigned int *addr, pid_t pid);
 
 
 // output.c

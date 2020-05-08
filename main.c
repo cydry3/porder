@@ -223,7 +223,7 @@ char *get_base_address(char *path_buf)
 		}
 		ok = read(fd, (procinfo_buf + i), 1);
 		if (ok == -1) {
-			fprintf(stderr, "failed reading proc file\n",
+			fprintf(stderr, "failed reading proc file %s\n",
 					path_buf);
 			close(fd);
 			exit(1);
@@ -248,7 +248,7 @@ get_child_mem_mapped_base_address(pid_t pid)
 }
 
 long long int
-instruction_address_offset(long long int *addr, pid_t pid)
+instruction_address_offset(long long unsigned int *addr, pid_t pid)
 {
 	static long long int base_p;
 	static char once = 1;
@@ -344,6 +344,8 @@ int parent_main(pid_t child_pid)
 
 		} else if (WIFSIGNALED(wstatus)){
 			int signum = WTERMSIG(wstatus);
+			// debug:
+			print_sig(signum);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
 			// debug:

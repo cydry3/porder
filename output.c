@@ -89,7 +89,7 @@ void print_regs_at_end_point(pid_t pid)
 void print_child_memory_data(pid_t pid, void *addr)
 {
 	long res = get_child_memory_data(pid, addr);
-	printf("data: %08llx", res);
+	printf("data: %08lx", res);
 }
 
 void print_instruction_on_child(pid_t pid)
