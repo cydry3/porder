@@ -331,6 +331,7 @@ int parent_main(pid_t child_pid)
 	trace_status_to_singlestep(&ts_status);
 
 	int post_fd = STDOUT_FILENO;
+	int pipefd[2];
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
 	continue_trace_option(pid);
@@ -352,6 +353,10 @@ int parent_main(pid_t child_pid)
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
 			// debug:
 			print_sig(wstatus>>8);
+
+			prepare_conv_table(pid);    		  // `pre-process`
+			post_fd = spawn_post_printer(pipefd); // `post-proecess`
+
 			trace_option(pid);
 			start_trace(pid, 0, &ts_status);
 

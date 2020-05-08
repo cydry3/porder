@@ -41,3 +41,8 @@ void print_regs_at_end_point(pid_t pid);
 void print_child_memory_data(pid_t pid, void *addr);
 void print_instruction_on_child(pid_t pid, int post_fd);
 void print_syscall_name(unsigned long long int s);
+
+
+// aux_scripts.c
+void prepare_conv_table(pid_t child_pid);
+int spawn_post_printer();
