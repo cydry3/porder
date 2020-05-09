@@ -61,7 +61,7 @@ void toggle_syscall_status(syscall_status *s_status);
 int is_exec_after(syscall_status *s_status);
 int is_in_syscall(syscall_status *s_status);
 int in_syscall(syscall_status *s_status);
-;
+
 void trace_status_to_singlestep(trace_step_status_t *ts_status);
 void trace_status_to_syscall(trace_step_status_t *ts_status);
 int is_trace_status_on_singlestep(trace_step_status_t *ts_status);

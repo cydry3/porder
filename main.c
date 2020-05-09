@@ -173,14 +173,31 @@ void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step
 		handle_sigtrap_by_othter(pid, signum, sstatus, ts_status);
 }
 
-int parent_main(pid_t child_pid)
+int prepare_singlestep_tracing (pid_t pid, int pipefd[]) {
+	prepare_conv_table(pid);    		  // `pre-process`
+	return spawn_post_printer(*pipefd); // `post-proecess`
+}
+
+void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)
+{
+	if (mode == 0)
+		trace_status_to_singlestep(ts_status);
+	else if (mode == 1)
+		trace_status_to_syscall(ts_status);
+	else {
+		fprintf(stderr, "unexpected trace mode %d\n", mode);
+		exit(1);
+	}
+}
+
+int parent_main(pid_t child_pid, int mode)
 {
 	int wstatus = 0;
 	syscall_status sstatus;
 	init_syscall_status(&sstatus);
 
 	trace_step_status_t ts_status;
-	trace_status_to_singlestep(&ts_status);
+	set_trace_status_by_mode(&ts_status, mode);
 
 	int post_fd = STDOUT_FILENO;
 	int pipefd[2];
@@ -206,8 +223,8 @@ int parent_main(pid_t child_pid)
 			// debug:
 			print_sig(wstatus>>8);
 
-			prepare_conv_table(pid);    		  // `pre-process`
-			post_fd = spawn_post_printer(pipefd); // `post-proecess`
+			if (is_trace_status_on_singlestep(&ts_status))
+				prepare_singlestep_tracing(pid, pipefd);
 
 			trace_option(pid);
 			start_trace(pid, 0, &ts_status);
@@ -237,6 +254,8 @@ int main(int argc, char *argv[])
 	char *args[10];
 	args_copy(args, argv, argc);
 
+	int mode = 1; // default
+
 	pid_t pid = fork();
 	if ((pid == -1))
 		exit(1);
@@ -244,7 +263,7 @@ int main(int argc, char *argv[])
 	if (pid == 0) {
 		child_main(args);
 	} else {
-		parent_main(pid);
+		parent_main(pid, mode);
 	}
 	return 0;
 }
