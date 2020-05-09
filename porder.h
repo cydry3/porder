@@ -15,6 +15,12 @@
 
 typedef char trace_step_status_t;
 
+typedef struct syscall_status {;
+	int exec_after;
+	int in_syscall;
+} syscall_status;
+
+
 // main.c
 void trace_status_to_syscall(trace_step_status_t *ts_status);
 int  is_trace_status_on_syscall(trace_step_status_t *ts_status);
@@ -46,3 +52,17 @@ void print_syscall_name(unsigned long long int s);
 // aux_scripts.c
 void prepare_conv_table(pid_t child_pid);
 int spawn_post_printer();
+
+
+// status.c
+void init_syscall_status(syscall_status *s_status);
+void once_toggle_exec_status(syscall_status *s_status);
+void toggle_syscall_status(syscall_status *s_status);
+int is_exec_after(syscall_status *s_status);
+int is_in_syscall(syscall_status *s_status);
+int in_syscall(syscall_status *s_status);
+;
+void trace_status_to_singlestep(trace_step_status_t *ts_status);
+void trace_status_to_syscall(trace_step_status_t *ts_status);
+int is_trace_status_on_singlestep(trace_step_status_t *ts_status);
+int is_trace_status_on_syscall(trace_step_status_t *ts_status);
