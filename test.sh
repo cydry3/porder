@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./porder /bin/ls
+./porder -s /bin/ls

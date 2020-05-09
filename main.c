@@ -1,11 +1,5 @@
 #include "porder.h"
 
-void args_copy(char **dest, char **argv, size_t argc) {
-	for (int i = 1; i < argc; i++)
-		dest[i-1] = argv[i];
-	dest[argc-1] = NULL;
-}
-
 void be_tracee() {
 	long res = ptrace(PTRACE_TRACEME, NULL, NULL, NULL);
 	if (res == -1) {
@@ -251,17 +245,18 @@ int parent_main(pid_t child_pid, int mode)
 
 int main(int argc, char *argv[])
 {
-	char *args[10];
-	args_copy(args, argv, argc);
-
+	char *cmd[10];
 	int mode = 1; // default
+	args_parse(&mode, cmd, argv, argc);
+	printf("mode %d\n", mode);
+	printf("cmd  %s\n", cmd[0]);
 
 	pid_t pid = fork();
 	if ((pid == -1))
 		exit(1);
 
 	if (pid == 0) {
-		child_main(args);
+		child_main(cmd);
 	} else {
 		parent_main(pid, mode);
 	}
