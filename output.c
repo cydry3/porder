@@ -1,5 +1,7 @@
 #include "porder.h"
 
+void print_syscall_args(pid_t pid, struct user_regs_struct *regs);
+
 void print_sig(int sig)
 {
 	printf("Child received signal %d\n", sig);
@@ -26,17 +28,11 @@ void print_exec_after_msg(unsigned long long int syscall_num)
 	printf(" after execv done\n");
 }
 
-void print_syscall_args(struct user_regs_struct *regs)
-{
-	printf(" <- Arguments(0x%08llx, 0x%08llx, 0x%08llx)\n",
-		   regs->rdi, regs->rsi, regs->rdx);
-}
-
-void print_start_syscall_msg(struct user_regs_struct *regs)
+void print_start_syscall_msg(struct user_regs_struct *regs, pid_t pid)
 {
 	print_syscall_name(regs->orig_rax);
 	printf(" started");
-	print_syscall_args(regs);
+	print_syscall_args(pid, regs);
 }
 
 void print_error_value(long long int err,
@@ -75,7 +71,7 @@ void print_regs_at_start_point(pid_t pid)
 	struct user_regs_struct regs;
 
 	if (get_user_register(&regs, pid))
-		print_start_syscall_msg(&regs);
+		print_start_syscall_msg(&regs, pid);
 }
 
 void print_regs_at_end_point(pid_t pid)
@@ -449,4 +445,38 @@ void print_syscall_name(unsigned long long int s)
 		default: break;
 	}
 	printf(")");
+}
+
+void print_syscall_default(struct user_regs_struct *regs)
+{
+	printf(" <- Arguments(0x%08llx, 0x%08llx, 0x%08llx)\n",
+			regs->rdi, regs->rsi, regs->rdx);
+}
+
+void print_syscall_arg_string(pid_t pid, long long unsigned int next)
+{
+	printf("'");
+	for (int j = 0; j < 4; j++) {
+		long res = get_child_memory_data(pid, (void *)(next + (4 * j)));
+		for (int i = 0; i < 4; i++)  {
+			char c = res>>(8*i);
+			printf("%c", c);
+		}
+	}
+	printf("'");
+}
+
+void print_syscall_openat(pid_t pid, struct user_regs_struct *regs)
+{
+	printf(" <-args(0x%08llx, ", regs->rdi);
+	print_syscall_arg_string(pid, regs->rsi);
+	printf(", 0x%08llx)\n", regs->rdx);
+}
+
+void print_syscall_args(pid_t pid, struct user_regs_struct *regs)
+{
+	switch (regs->orig_rax) {
+		case __NR_openat /* 257 */: print_syscall_openat(pid, regs); break;
+		default: print_syscall_default(regs); break;
+	}
 }

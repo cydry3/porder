@@ -34,8 +34,9 @@ instruction_address_offset(long long unsigned int *addr, pid_t pid);
 void print_sig(int sig);
 void print_pid(pid_t pid);
 void print_exec_after_msg(unsigned long long int syscall_num);
-void print_syscall_args(struct user_regs_struct *regs);
-void print_start_syscall_msg(struct user_regs_struct *regs);
+void print_syscall_args_at_before_point(struct user_regs_struct *regs, pid_t pid);
+void print_syscall_args_at_after_point(struct user_regs_struct *regs, pid_t pid);
+void print_start_syscall_msg(struct user_regs_struct *regs, pid_t pid);
 void print_error_value(long long int err,
 						unsigned long long int syscall_num);
 void print_return_value(unsigned long long int ret_val,

@@ -69,6 +69,7 @@ instruction_address_offset(long long unsigned int *addr, pid_t pid)
 
 long get_child_memory_data(pid_t pid, void *addr)
 {
+	errno = 0;
 	long res = ptrace(PTRACE_PEEKDATA, pid, addr, 0);
 	if (errno != 0) {
 		fprintf(stderr, "failed peeking child process's memory text. %s\n",
