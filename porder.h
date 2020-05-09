@@ -39,9 +39,8 @@ void print_syscall_args_at_after_point(struct user_regs_struct *regs, pid_t pid)
 void print_start_syscall_msg(struct user_regs_struct *regs, pid_t pid);
 void print_error_value(long long int err,
 						unsigned long long int syscall_num);
-void print_return_value(unsigned long long int ret_val,
-						unsigned long long int syscall_num);
-void print_end_syscall_msg(struct user_regs_struct *regs);
+void print_return_value(pid_t pid, struct user_regs_struct *regs);
+void print_end_syscall_msg(pid_t pid, struct user_regs_struct *regs);
 void print_regs_at_after_exec_point(pid_t pid);
 void print_regs_at_start_point(pid_t pid);
 void print_regs_at_end_point(pid_t pid);

@@ -1,6 +1,7 @@
 #include "porder.h"
 
 void print_syscall_args(pid_t pid, struct user_regs_struct *regs);
+void print_syscall_retval(pid_t pid, struct user_regs_struct *regs);
 
 void print_sig(int sig)
 {
@@ -42,19 +43,18 @@ void print_error_value(long long int err,
 	printf(" ended   -> ReturnValue<Error> (0x%08llx)\n", err);
 }
 
-void print_return_value(unsigned long long int ret_val,
-						unsigned long long int syscall_num)
+void print_return_value(pid_t pid, struct user_regs_struct *regs)
 {
-	print_syscall_name(syscall_num);
-	printf(" ended   -> ReturnValue (0x%08llx)\n", ret_val);
+	print_syscall_name(regs->orig_rax);
+	 print_syscall_retval(pid, regs);
 }
 
-void print_end_syscall_msg(struct user_regs_struct *regs)
+void print_end_syscall_msg(pid_t pid, struct user_regs_struct *regs)
 {
 	if (regs->rax < 0) {
 		print_error_value(regs->rax, regs->orig_rax);
 	} else {
-		print_return_value(regs->rax, regs->orig_rax);
+		print_return_value(pid, regs);
 	}
 }
 
@@ -79,7 +79,7 @@ void print_regs_at_end_point(pid_t pid)
 	struct user_regs_struct regs;
 
 	if (get_user_register(&regs, pid))
-		print_end_syscall_msg(&regs);
+		print_end_syscall_msg(pid, &regs);
 }
 
 void print_child_memory_data(pid_t pid, void *addr)
@@ -447,7 +447,7 @@ void print_syscall_name(unsigned long long int s)
 	printf(")");
 }
 
-void print_syscall_default(struct user_regs_struct *regs)
+void print_syscall_args_default(struct user_regs_struct *regs)
 {
 	printf(" <- Arguments(0x%08llx, 0x%08llx, 0x%08llx)\n",
 			regs->rdi, regs->rsi, regs->rdx);
@@ -473,10 +473,56 @@ void print_syscall_openat(pid_t pid, struct user_regs_struct *regs)
 	printf(", 0x%08llx)\n", regs->rdx);
 }
 
+void print_syscall_open(pid_t pid, struct user_regs_struct *regs)
+{
+	printf(" <-args(");
+	print_syscall_arg_string(pid, regs->rdi);
+	printf(", 0x%08llx", regs->rsi);
+	printf(", 0x%08llx)\n", regs->rdx);
+}
+
+void print_syscall_stat(pid_t pid, struct user_regs_struct *regs)
+{
+	printf(" <-args(0x%08llx, ", regs->rdi);
+	print_syscall_arg_string(pid, regs->rsi);
+	printf(", 0x%08llx)\n", regs->rdx);
+}
+
+void print_syscall_lstat(pid_t pid, struct user_regs_struct *regs) {
+	print_syscall_stat(pid, regs);
+}
+
+void print_syscall_write(pid_t pid, struct user_regs_struct *regs) {
+	printf(" <-args(0x%08llx, ", regs->rdi);
+	print_syscall_arg_string(pid, regs->rsi);
+	printf(", 0x%08llx)\n", regs->rdx);
+}
+
 void print_syscall_args(pid_t pid, struct user_regs_struct *regs)
 {
 	switch (regs->orig_rax) {
+		case __NR_write /* 1 */: print_syscall_write(pid, regs); break;
+		case __NR_open /* 2 */: print_syscall_open(pid, regs); break;
+		case __NR_stat /* 4 */: print_syscall_stat(pid, regs); break;
+		case __NR_lstat /* 6 */: print_syscall_lstat(pid, regs); break;
 		case __NR_openat /* 257 */: print_syscall_openat(pid, regs); break;
-		default: print_syscall_default(regs); break;
+		default: print_syscall_args_default(regs); break;
 	}
+}
+
+void print_syscall_read(pid_t pid, struct user_regs_struct *regs) {
+	printf("(0x%08llx, ", regs->rdi);
+	print_syscall_arg_string(pid, regs->rsi);
+	printf(", 0x%08llx)", regs->rdx);
+}
+
+void print_syscall_retval(pid_t pid, struct user_regs_struct *regs)
+{
+	printf(" ended   -> ");
+	switch (regs->orig_rax) {
+		case __NR_read /* 0 */: print_syscall_read(pid, regs); break;
+		default:
+			break;
+	}
+	printf(" = (0x%08llx)\n", regs->rax);
 }
