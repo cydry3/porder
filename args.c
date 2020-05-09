@@ -2,10 +2,10 @@
 
 void print_usage(char **argv)
 {
-	  fprintf(stderr, "Usage: %s [-i][-s] command [args]\n", argv[0]);
+	  fprintf(stderr, "Usage: %s [-i][-s][-d] command [args]\n", argv[0]);
 	  fprintf(stderr, "          -i print instructions\n");
 	  fprintf(stderr, "          -s print system calls\n");
-
+	  fprintf(stderr, "          -d debug mode it self\n");
 }
 
 void args_copy(char **dest, char **argv, int index, size_t argc) 
@@ -19,10 +19,11 @@ void args_copy(char **dest, char **argv, int index, size_t argc)
 void opt_parse(int *mode, char **argv, size_t argc)
 {
 	int opt;
-	while ((opt = getopt(argc, argv, "is")) != -1) {
+	while ((opt = getopt(argc, argv, "isd")) != -1) {
 		switch (opt) {
 			case 'i': *mode = 0; break;
 			case 's': *mode = 1; break;
+			case 'd': *mode = 2; break;
 			default:  print_usage(argv); exit(1);
 		}
 	}

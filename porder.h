@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
+
 typedef char trace_step_status_t;
 
 typedef struct syscall_status {;
@@ -28,7 +29,13 @@ int  is_trace_status_on_singlestep(trace_step_status_t *ts_status);
 long get_child_memory_data(pid_t pid, void *addr);
 long long int
 instruction_address_offset(long long unsigned int *addr, pid_t pid);
-
+void continue_trace_option(pid_t child_pid);
+void continue_child(pid_t child_pid);
+void trace_option(pid_t child_pid);
+void start_trace(pid_t child_pid, int sig, trace_step_status_t *ts_status);
+void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd);
+void start_trace_on_syscall(pid_t child_pid, int sig);
+void ignore_signal_number(int *sig);
 
 // output.c
 void print_sig(int sig);
@@ -69,3 +76,6 @@ int is_trace_status_on_syscall(trace_step_status_t *ts_status);
 
 // args.c
 void args_parse(int *mode, char **dest, char **argv, size_t argc);
+
+// debug.c
+int debug_loop(pid_t child_pid);

@@ -186,6 +186,9 @@ void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)
 
 int parent_main(pid_t child_pid, int mode)
 {
+	if (mode == 2)
+		return debug_loop(child_pid);
+
 	int wstatus = 0;
 	syscall_status sstatus;
 	init_syscall_status(&sstatus);
