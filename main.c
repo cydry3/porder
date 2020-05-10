@@ -33,7 +33,7 @@ void continue_trace_option(pid_t child_pid)
 
 void trace_option(pid_t child_pid)
 {
-	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACESYSGOOD);
+	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACESYSGOOD|PTRACE_O_TRACEEXEC);
 	if (res == -1) {
 		fprintf(stderr, "failed set a trace option\n");
 		exit(1);
