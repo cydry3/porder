@@ -89,3 +89,6 @@ void args_parse(int *mode, char **dest, char **argv, size_t argc);
 
 // debug.c
 int debug_loop(pid_t child_pid);
+
+// inspect.c
+pid_t get_pid_forked_on_child(pid_t child_pid);

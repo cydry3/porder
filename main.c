@@ -149,8 +149,11 @@ void handle_sigtrap_by_tracing(pid_t pid, int *signum, syscall_status *sstatus, 
 	if (is_trace_status_on_syscall(ts_status))
 		handle_on_syscall(pid, signum, sstatus, ts_status);
 
-	else if (is_trace_status_on_singlestep(ts_status))
+	else if (is_trace_status_on_singlestep(ts_status)) {
+		fprintf(stderr, "debug-");
 		handle_on_singlestep(pid, signum, sstatus, ts_status, post_fd);
+
+	}
 
 	else {
 		fprintf(stderr, "unreachable in handling a sigtrap by tracing.\n");
@@ -249,8 +252,10 @@ int parent_main(pid_t child_pid, int mode)
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
 			signum = (wstatus>>8);
-			fprintf(stderr, "PID:%d fork-ed(%d)\n", pid, signum);
+			pid_t forked_pid = get_pid_forked_on_child(pid);
+			fprintf(stderr, "PID:%d fork-ed(%d) -> new(%d)\n", pid, signum, forked_pid);
 			restart_trace(pid, signum, &c_status.tracestep);
+			restart_trace(forked_pid, signum, &c_status.tracestep);
 
 		} else if (WIFSTOPPED(wstatus)){
 			signum = WSTOPSIG(wstatus);

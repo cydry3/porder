@@ -78,3 +78,29 @@ long get_child_memory_data(pid_t pid, void *addr)
 	}
 	return res;
 }
+
+pid_t try_get_pid_forked_on_child(pid_t child_pid)
+{
+	unsigned long forked_pid;
+	long res = ptrace(PTRACE_GETEVENTMSG, child_pid, NULL, &forked_pid);
+	if (res == -1) {
+		fprintf(stderr, "failed getting a pid of forked from child process. %s\n",
+				strerror(errno));
+		exit(1);
+	}
+	return (pid_t)forked_pid;
+}
+
+pid_t get_pid_forked_on_child(pid_t child_pid)
+{
+	int lim = 8;
+	pid_t cc_pid = -1;
+
+	while (lim > 0) {
+		if (cc_pid != -1)
+			break;
+		cc_pid = try_get_pid_forked_on_child(child_pid);
+		lim--;
+	}
+	return cc_pid;
+}
