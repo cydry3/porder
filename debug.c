@@ -53,7 +53,7 @@ int debug_loop(pid_t child_pid)
 
 	int signum = 0;
 	while (1) {
-		pid = waitpid(pid, &wstatus, 0);
+		pid = wait(&wstatus);
 		if (pid == -1) {
 			fprintf(stderr, "PID[%d] failed waiting\n", pid);
 			return 1;
@@ -73,6 +73,16 @@ int debug_loop(pid_t child_pid)
 
 			if (!confirm_continue()) 
 				break;
+			restart_trace(pid, signum, &c_status.tracestep);
+
+		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
+			signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d clone-ed(%d)\n", pid, signum);
+			restart_trace(pid, signum, &c_status.tracestep);
+
+		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
+			signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d fork-ed(%d)\n", pid, signum);
 			restart_trace(pid, signum, &c_status.tracestep);
 
 		} else if (WIFSTOPPED(wstatus)){
