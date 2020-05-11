@@ -14,13 +14,13 @@ int confirm_continue()
 int debug_loop(pid_t child_pid)
 {
 	int wstatus = 0;
-	struct child_status c_status;
+	struct child_context c_ctx;
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
-	init_child_status(pid, &c_status);
+	init_child_context (pid, &c_ctx);
 
-	continue_trace_option(c_status.pid);
-	continue_child(c_status.pid);
+	continue_trace_option(c_ctx.pid);
+	continue_child(c_ctx.pid);
 
 	while (1) {
 		pid = wait(&wstatus);
@@ -29,48 +29,48 @@ int debug_loop(pid_t child_pid)
 			return 1;
 		}
 
-		c_status.pid = pid;
+		c_ctx.pid = pid;
 		if (WIFEXITED(wstatus)) {
 			fprintf(stderr, "PID:%d exited\n", pid);
 			break;
 
 		} else if (WIFSIGNALED(wstatus)){
-			c_status.signum = WTERMSIG(wstatus);
-			fprintf(stderr, "PID:%d signaled(%d)\n", c_status.pid, c_status.signum);
+			c_ctx.signum = WTERMSIG(wstatus);
+			fprintf(stderr, "PID:%d signaled(%d)\n", c_ctx.pid, c_ctx.signum);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
-			c_status.signum = (wstatus>>8);
-			fprintf(stderr, "PID:%d exec-ed(%d)\n", c_status.pid, c_status.signum);
+			c_ctx.signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d exec-ed(%d)\n", c_ctx.pid, c_ctx.signum);
 
 			if (!confirm_continue()) 
 				break;
-			restart_trace(&c_status);
+			restart_trace(&c_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
-			c_status.signum = (wstatus>>8);
-			fprintf(stderr, "PID:%d clone-ed(%d)\n", c_status.pid, c_status.signum);
-			restart_trace(&c_status);
+			c_ctx.signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d clone-ed(%d)\n", c_ctx.pid, c_ctx.signum);
+			restart_trace(&c_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
-			c_status.signum = (wstatus>>8);
-			pid_t forked_pid = get_pid_forked_on_child(c_status.pid);
-			fprintf(stderr, "PID:%d fork-ed(%d) -> new(%d)\n", c_status.pid, c_status.signum, forked_pid);
+			c_ctx.signum = (wstatus>>8);
+			pid_t forked_pid = get_pid_forked_on_child(c_ctx.pid);
+			fprintf(stderr, "PID:%d fork-ed(%d) -> new(%d)\n", c_ctx.pid, c_ctx.signum, forked_pid);
 
-			restart_trace(&c_status);
-			c_status.pid = forked_pid;
-			restart_trace(&c_status);
+			restart_trace(&c_ctx);
+			c_ctx.pid = forked_pid;
+			restart_trace(&c_ctx);
 
 		} else if (WIFSTOPPED(wstatus)){
-			c_status.signum = WSTOPSIG(wstatus);
-			fprintf(stderr, "PID:%d stopped(%d)\n", c_status.pid, c_status.signum);
-			restart_trace(&c_status); // instead of handling a signal
+			c_ctx.signum = WSTOPSIG(wstatus);
+			fprintf(stderr, "PID:%d stopped(%d)\n", c_ctx.pid, c_ctx.signum);
+			restart_trace(&c_ctx); // instead of handling a signal
 
 		} else if (WIFCONTINUED(wstatus)) {
-			c_status.signum = SIGCONT;
-			fprintf(stderr, "PID:%d resumed(%d)\n", c_status.pid, c_status.signum);
+			c_ctx.signum = SIGCONT;
+			fprintf(stderr, "PID:%d resumed(%d)\n", c_ctx.pid, c_ctx.signum);
 
 		} else {
-			fprintf(stderr, "PID:%d unexpected signal(%d)\n", pid, c_status.signum);
+			fprintf(stderr, "PID:%d unexpected signal(%d)\n", pid,c_ctx.signum);
 			exit(1);
 		}
 	}

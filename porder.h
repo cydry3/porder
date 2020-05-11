@@ -21,7 +21,7 @@ typedef struct syscall_status {;
 	int in_syscall;
 } syscall_status;
 
-struct child_status {
+struct child_context {
 	pid_t pid;
 	int signum;
 	char forked;
@@ -40,11 +40,11 @@ instruction_address_offset(long long unsigned int *addr, pid_t pid);
 void continue_trace_option(pid_t child_pid);
 void continue_child(pid_t child_pid);
 void trace_option(pid_t child_pid);
-void start_trace(struct child_status *c_status);
-void handle_sigtraps(struct child_status *c_status);
-void start_trace_on_syscall(struct child_status *c_status);
+void start_trace(struct child_context *c_ctx);
+void handle_sigtraps(struct child_context *c_ctx);
+void start_trace_on_syscall(struct child_context *c_ctx);
 void ignore_signal_number(int *sig);
-void restart_trace(struct child_status *c_status);
+void restart_trace(struct child_context *c_ctx);
 void stop_child(pid_t pid);
 
 // output.c
@@ -84,7 +84,7 @@ void trace_status_to_syscall(trace_step_status_t *ts_status);
 int is_trace_status_on_singlestep(trace_step_status_t *ts_status);
 int is_trace_status_on_syscall(trace_step_status_t *ts_status);
 
-void init_child_status(pid_t pid, struct child_status *c_status);
+void init_child_context (pid_t pid, struct child_context *c_ctx);
 
 // args.c
 void args_parse(int *mode, char **dest, char **argv, size_t argc);
