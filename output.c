@@ -13,6 +13,13 @@ void print_pid(pid_t pid)
 	printf("pid: %d ", pid);
 }
 
+void print_fork_context(struct child_context *ctx)
+{
+	printf("[");
+	print_pid(ctx->pid);
+	printf("] ");
+}
+
 int get_user_register(struct user_regs_struct *regs, pid_t pid)
 {
 	long res = ptrace(PTRACE_GETREGS, pid, NULL, regs);
@@ -526,3 +533,4 @@ void print_syscall_retval(pid_t pid, struct user_regs_struct *regs)
 	}
 	printf(" = (0x%08llx)\n", regs->rax);
 }
+

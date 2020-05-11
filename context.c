@@ -51,3 +51,8 @@ void set_fork_context(struct child_context *ctx)
 {
 	ctx->forked = 1;
 }
+
+int is_fork_context(struct child_context *ctx)
+{
+	return (ctx->forked == 1);
+}

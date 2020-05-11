@@ -134,6 +134,8 @@ void ignore_signal_number_sigtraps(int *sig)
 
 void handle_on_syscall(struct child_context *c_ctx)
 {
+	if (is_fork_context(c_ctx))
+		print_fork_context(c_ctx);
 	// Syscall before & after point. in addtion, exec after point.
 	if (is_exec_after(&c_ctx->syscall)) {
 		if (is_in_syscall(&c_ctx->syscall))

@@ -65,6 +65,7 @@ void print_regs_at_end_point(pid_t pid);
 void print_child_memory_data(pid_t pid, void *addr);
 void print_instruction_on_child(pid_t pid);
 void print_syscall_name(unsigned long long int s);
+void print_fork_context(struct child_context *ctx);
 
 
 // aux_scripts.c
@@ -100,3 +101,4 @@ pid_t get_pid_forked_on_child(pid_t child_pid);
 struct child_context *enroll_context(pid_t pid);
 struct child_context *recept_context(pid_t pid);
 void set_fork_context(struct child_context *ctx);
+int is_fork_context(struct child_context *ctx);
