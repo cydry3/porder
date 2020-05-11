@@ -12,6 +12,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <search.h>
 
 
 typedef char trace_step_status_t;
@@ -94,3 +95,8 @@ int debug_loop(pid_t child_pid);
 
 // inspect.c
 pid_t get_pid_forked_on_child(pid_t child_pid);
+
+// context.c
+struct child_context *enroll_context(pid_t pid);
+struct child_context *recept_context(pid_t pid);
+void set_fork_context(struct child_context *ctx);

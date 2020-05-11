@@ -26,16 +26,29 @@ void continue_trace_option(pid_t child_pid)
 {
 	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACEEXEC);
 	if (res == -1) {
-		fprintf(stderr, "failed set a trace option\n");
+		fprintf(stderr, "failed set a trace option at a continue point\n");
 		exit(1);
 	}
 }
 
+int try_trace_option(pid_t child_pid)
+{
+	int lim = 8;
+	while (lim > 0) {
+		long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL,
+							PTRACE_O_TRACESYSGOOD|PTRACE_O_TRACEEXEC|PTRACE_O_TRACECLONE|PTRACE_O_TRACEFORK);
+		if (res != -1)
+			return 0;
+		lim--;
+	}
+	return -1;
+}
+
 void trace_option(pid_t child_pid)
 {
-	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACESYSGOOD|PTRACE_O_TRACEEXEC|PTRACE_O_TRACECLONE|PTRACE_O_TRACEFORK);
+	int res = try_trace_option(child_pid);
 	if (res == -1) {
-		fprintf(stderr, "failed set a trace option\n");
+		fprintf(stderr, "failed set a trace option: %d, %s\n", child_pid, strerror(errno));
 		exit(1);
 	}
 }
@@ -195,57 +208,59 @@ int parent_main(pid_t child_pid, int mode)
 		return debug_loop(child_pid);
 
 	int wstatus = 0;
-	struct child_context c_ctx;
 	int pipefd[2];
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
 
-	init_child_context (pid, &c_ctx);
-	set_trace_status_by_mode(&c_ctx.tracestep, mode);
+	struct child_context *c_ctx = enroll_context(pid);
+	set_trace_status_by_mode(&c_ctx->tracestep, mode);
 
-	continue_trace_option(c_ctx.pid);
-	continue_child(c_ctx.pid);
+	continue_trace_option(c_ctx->pid);
+	continue_child(c_ctx->pid);
 
 	while (1) {
 		pid = wait(&wstatus);
 		if (pid == -1)
 			return 1;
 
-		c_ctx.pid = pid;
+		c_ctx = recept_context(pid);
 		if (WIFEXITED(wstatus)) {
 			break;
 
 		} else if (WIFSIGNALED(wstatus)){
-			c_ctx.signum = WTERMSIG(wstatus);
+			c_ctx->signum = WTERMSIG(wstatus);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
-			c_ctx.signum = (wstatus>>8);
+			c_ctx->signum = (wstatus>>8);
 
-			if (is_trace_status_on_singlestep(&c_ctx.tracestep))
+			if (is_trace_status_on_singlestep(&c_ctx->tracestep))
 				prepare_singlestep_tracing(pid, pipefd);
 
-			restart_trace(&c_ctx);
+			restart_trace(c_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
-			c_ctx.signum = (wstatus>>8);
-			restart_trace(&c_ctx);
+			c_ctx->signum = (wstatus>>8);
+			restart_trace(c_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
-			c_ctx.signum = (wstatus>>8);
+			c_ctx->signum = (wstatus>>8);
 			pid_t forked_pid = get_pid_forked_on_child(pid);
 
-			restart_trace(&c_ctx);
-			c_ctx.pid = forked_pid;
-			restart_trace(&c_ctx);
+			struct child_context *forked_ctx = enroll_context(forked_pid);
+			set_trace_status_by_mode(&forked_ctx->tracestep, mode);
+			set_fork_context(forked_ctx);
+
+			restart_trace(c_ctx);
+			restart_trace(forked_ctx);
 
 		} else if (WIFSTOPPED(wstatus)){
-			c_ctx.signum = WSTOPSIG(wstatus);
-			handle_sigtraps(&c_ctx);
+			c_ctx->signum = WSTOPSIG(wstatus);
+			handle_sigtraps(c_ctx);
 
-			restart_trace(&c_ctx);
+			restart_trace(c_ctx);
 
 		} else if (WIFCONTINUED(wstatus)) {
-			c_ctx.signum = SIGCONT;
+			c_ctx->signum = SIGCONT;
 
 		} else {
 			printf("others!\n");
