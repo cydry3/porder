@@ -88,7 +88,7 @@ void print_child_memory_data(pid_t pid, void *addr)
 	printf("data: %08lx", res);
 }
 
-void print_instruction_on_child(pid_t pid, int post_fd)
+void print_instruction_on_child(pid_t pid)
 {
 	char rip_addr[16];
 	struct user_regs_struct regs;

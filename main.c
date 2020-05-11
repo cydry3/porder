@@ -133,18 +133,18 @@ void handle_on_syscall(struct child_status *c_status)
 	}
 }
 
-void handle_on_singlestep(struct child_status *c_status, int post_fd)
+void handle_on_singlestep(struct child_status *c_status)
 {
-	print_instruction_on_child(c_status->pid, post_fd);
+	print_instruction_on_child(c_status->pid);
 }
 
-void handle_sigtrap_by_tracing(struct child_status *c_status, int post_fd)
+void handle_sigtrap_by_tracing(struct child_status *c_status)
 {
 	if (is_trace_status_on_syscall(&c_status->tracestep))
 		handle_on_syscall(c_status);
 
 	else if (is_trace_status_on_singlestep(&c_status->tracestep)) 
-		handle_on_singlestep(c_status, post_fd);
+		handle_on_singlestep(c_status);
 
 	else {
 		fprintf(stderr, "unreachable in handling a sigtrap by tracing.\n");
@@ -163,10 +163,10 @@ int is_on_tracing(struct child_status *c_status)
 			(is_sigtrap(&c_status->signum) && (is_trace_status_on_singlestep(&c_status->tracestep))));
 }
 
-void handle_sigtraps(struct child_status *c_status, int post_fd)
+void handle_sigtraps(struct child_status *c_status)
 {
 	if (is_on_tracing(c_status))
-		handle_sigtrap_by_tracing(c_status, post_fd);
+		handle_sigtrap_by_tracing(c_status);
 
 	else
 		handle_sigtrap_by_othter(c_status);
@@ -196,7 +196,6 @@ int parent_main(pid_t child_pid, int mode)
 
 	int wstatus = 0;
 	struct child_status c_status;
-	int post_fd = STDOUT_FILENO;
 	int pipefd[2];
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
@@ -241,7 +240,7 @@ int parent_main(pid_t child_pid, int mode)
 
 		} else if (WIFSTOPPED(wstatus)){
 			c_status.signum = WSTOPSIG(wstatus);
-			handle_sigtraps(&c_status, post_fd);
+			handle_sigtraps(&c_status);
 
 			restart_trace(&c_status);
 

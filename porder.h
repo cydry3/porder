@@ -41,7 +41,7 @@ void continue_trace_option(pid_t child_pid);
 void continue_child(pid_t child_pid);
 void trace_option(pid_t child_pid);
 void start_trace(struct child_status *c_status);
-void handle_sigtraps(struct child_status *c_status, int post_fd);
+void handle_sigtraps(struct child_status *c_status);
 void start_trace_on_syscall(struct child_status *c_status);
 void ignore_signal_number(int *sig);
 void restart_trace(struct child_status *c_status);
@@ -62,7 +62,7 @@ void print_regs_at_after_exec_point(pid_t pid);
 void print_regs_at_start_point(pid_t pid);
 void print_regs_at_end_point(pid_t pid);
 void print_child_memory_data(pid_t pid, void *addr);
-void print_instruction_on_child(pid_t pid, int post_fd);
+void print_instruction_on_child(pid_t pid);
 void print_syscall_name(unsigned long long int s);
 
 
