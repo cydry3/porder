@@ -33,6 +33,13 @@ int confirm_continue()
 	return (yes_or == 'y');
 }
 
+void restart_trace(pid_t pid, int sig, trace_step_status_t *ts_status)
+{
+	trace_option(pid);
+	ignore_signal_number(&sig);
+	start_trace(pid, sig, ts_status);
+}
+
 int debug_loop(pid_t child_pid)
 {
 	int wstatus = 0;
@@ -66,18 +73,12 @@ int debug_loop(pid_t child_pid)
 
 			if (!confirm_continue()) 
 				break;
-
-			trace_option(pid);
-			ignore_signal_number(&signum);
-			start_trace(pid, signum, &c_status.tracestep);
+			restart_trace(pid, signum, &c_status.tracestep);
 
 		} else if (WIFSTOPPED(wstatus)){
 			signum = WSTOPSIG(wstatus);
 			fprintf(stderr, "PID:%d stopped(%d)\n", pid, signum);
-
-			trace_option(pid);
-			ignore_signal_number(&signum);
-			start_trace(pid, signum, &c_status.tracestep);
+			restart_trace(pid, signum, &c_status.tracestep);
 
 		} else if (WIFCONTINUED(wstatus)) {
 			signum = SIGCONT;
