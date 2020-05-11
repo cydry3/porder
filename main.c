@@ -58,31 +58,32 @@ void stop_child(pid_t pid)
 	}
 }
 
-void start_trace_on_syscall(pid_t child_pid, int sig)
+void start_trace_on_syscall(struct child_status *c_status)
 {
-	long res = ptrace(PTRACE_SYSCALL, child_pid, NULL, sig);
+	long res = ptrace(PTRACE_SYSCALL, c_status->pid, NULL, c_status->signum);
+	if (res == -1) {
+		fprintf(stderr, "failed start a syscall trace (pid:%d)(sig:%d)\n",
+				c_status->pid, c_status->signum);
+		exit(1);
+	}
+}
+
+void start_trace_on_singlestep(struct child_status *c_status)
+{
+	long res = ptrace(PTRACE_SINGLESTEP, c_status->pid, NULL, c_status->signum);
 	if (res == -1) {
 		fprintf(stderr, "failed start a trace\n");
 		exit(1);
 	}
 }
 
-void start_trace_on_singlestep(pid_t child_pid, int sig)
+void start_trace(struct child_status *c_status)
 {
-	long res = ptrace(PTRACE_SINGLESTEP, child_pid, NULL, sig);
-	if (res == -1) {
-		fprintf(stderr, "failed start a trace\n");
-		exit(1);
-	}
-}
+	if (is_trace_status_on_syscall(&c_status->tracestep))
+		start_trace_on_syscall(c_status);
 
-void start_trace(pid_t child_pid, int sig, trace_step_status_t *ts_status)
-{
-	if (is_trace_status_on_syscall(ts_status))
-		start_trace_on_syscall(child_pid, sig);
-
-	else if (is_trace_status_on_singlestep(ts_status))
-		start_trace_on_singlestep(child_pid, sig);
+	else if (is_trace_status_on_singlestep(&c_status->tracestep))
+		start_trace_on_singlestep(c_status);
 
 	else {
 		fprintf(stderr, "unreachable in starting trace.\n");
@@ -90,11 +91,11 @@ void start_trace(pid_t child_pid, int sig, trace_step_status_t *ts_status)
 	}
 }
 
-void restart_trace(pid_t pid, int sig, trace_step_status_t *ts_status)
+void restart_trace(struct child_status *c_status)
 {
-	trace_option(pid);
-	ignore_signal_number(&sig);
-	start_trace(pid, sig, ts_status);
+	trace_option(c_status->pid);
+	ignore_signal_number(&c_status->signum);
+	start_trace(c_status);
 }
 
 int is_sigtrap(int *sig)
@@ -118,42 +119,32 @@ void ignore_signal_number_sigtraps(int *sig)
 		*sig = 0;
 }
 
-void handle_on_syscall(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status)
+void handle_on_syscall(struct child_status *c_status)
 {
 	// Syscall before & after point. in addtion, exec after point.
-	if (is_exec_after(sstatus)) {
-		if (is_in_syscall(sstatus))
-			print_regs_at_end_point(pid);
+	if (is_exec_after(&c_status->syscall)) {
+		if (is_in_syscall(&c_status->syscall))
+			print_regs_at_end_point(c_status->pid);
 		else
-			print_regs_at_start_point(pid);
+			print_regs_at_start_point(c_status->pid);
 
 	} else {
-		print_regs_at_after_exec_point(pid);
+		print_regs_at_after_exec_point(c_status->pid);
 	}
-	trace_option(pid);
-	ignore_signal_number(signum);
-	start_trace(pid, *signum, ts_status);
 }
 
-void handle_on_singlestep(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
+void handle_on_singlestep(struct child_status *c_status, int post_fd)
 {
-	print_instruction_on_child(pid, post_fd);
-
-	trace_option(pid);
-	ignore_signal_number(signum);
-	start_trace(pid, *signum, ts_status);
+	print_instruction_on_child(c_status->pid, post_fd);
 }
 
-void handle_sigtrap_by_tracing(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
+void handle_sigtrap_by_tracing(struct child_status *c_status, int post_fd)
 {
-	if (is_trace_status_on_syscall(ts_status))
-		handle_on_syscall(pid, signum, sstatus, ts_status);
+	if (is_trace_status_on_syscall(&c_status->tracestep))
+		handle_on_syscall(c_status);
 
-	else if (is_trace_status_on_singlestep(ts_status)) {
-		fprintf(stderr, "debug-");
-		handle_on_singlestep(pid, signum, sstatus, ts_status, post_fd);
-
-	}
+	else if (is_trace_status_on_singlestep(&c_status->tracestep)) 
+		handle_on_singlestep(c_status, post_fd);
 
 	else {
 		fprintf(stderr, "unreachable in handling a sigtrap by tracing.\n");
@@ -161,29 +152,24 @@ void handle_sigtrap_by_tracing(pid_t pid, int *signum, syscall_status *sstatus, 
 	}
 }
 
-void handle_sigtrap_by_othter(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status)
+void handle_sigtrap_by_othter(struct child_status *c_status)
 {
 	printf("int3 instruction executed.\n");
-	trace_option(pid);
-	ignore_signal_number(signum);
-
-	trace_status_to_singlestep(ts_status);
-	start_trace(pid, *signum, ts_status);
 }
 
-int is_on_tracing(int *signum, trace_step_status_t *ts_status)
+int is_on_tracing(struct child_status *c_status)
 {
-	return ((is_sigtrap_by_tracing_good(signum)) ||
-			(is_sigtrap(signum) && (is_trace_status_on_singlestep(ts_status))));
+	return ((is_sigtrap_by_tracing_good(&c_status->signum)) ||
+			(is_sigtrap(&c_status->signum) && (is_trace_status_on_singlestep(&c_status->tracestep))));
 }
 
-void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd)
+void handle_sigtraps(struct child_status *c_status, int post_fd)
 {
-	if (is_on_tracing(signum, ts_status))
-		handle_sigtrap_by_tracing(pid, signum, sstatus, ts_status, post_fd);
+	if (is_on_tracing(c_status))
+		handle_sigtrap_by_tracing(c_status, post_fd);
 
 	else
-		handle_sigtrap_by_othter(pid, signum, sstatus, ts_status);
+		handle_sigtrap_by_othter(c_status);
 }
 
 int prepare_singlestep_tracing (pid_t pid, int pipefd[]) {
@@ -208,7 +194,6 @@ int parent_main(pid_t child_pid, int mode)
 	if (mode == 2)
 		return debug_loop(child_pid);
 
-	int signum = 0;
 	int wstatus = 0;
 	struct child_status c_status;
 	int post_fd = STDOUT_FILENO;
@@ -227,46 +212,41 @@ int parent_main(pid_t child_pid, int mode)
 		if (pid == -1)
 			return 1;
 
+		c_status.pid = pid;
 		if (WIFEXITED(wstatus)) {
 			break;
 
 		} else if (WIFSIGNALED(wstatus)){
-			signum = WTERMSIG(wstatus);
-			// debug:
-			print_sig(signum);
+			c_status.signum = WTERMSIG(wstatus);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
-			// debug:
-			print_sig(wstatus>>8);
+			c_status.signum = (wstatus>>8);
 
 			if (is_trace_status_on_singlestep(&c_status.tracestep))
 				prepare_singlestep_tracing(pid, pipefd);
 
-			trace_option(pid);
-			start_trace(pid, 0, &c_status.tracestep);
+			restart_trace(&c_status);
 
 		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
-			signum = (wstatus>>8);
-			fprintf(stderr, "PID:%d clone-ed(%d)\n", pid, signum);
-			restart_trace(pid, signum, &c_status.tracestep);
+			c_status.signum = (wstatus>>8);
+			restart_trace(&c_status);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
-			signum = (wstatus>>8);
+			c_status.signum = (wstatus>>8);
 			pid_t forked_pid = get_pid_forked_on_child(pid);
-			fprintf(stderr, "PID:%d fork-ed(%d) -> new(%d)\n", pid, signum, forked_pid);
-			restart_trace(pid, signum, &c_status.tracestep);
-			restart_trace(forked_pid, signum, &c_status.tracestep);
+
+			restart_trace(&c_status);
+			c_status.pid = forked_pid;
+			restart_trace(&c_status);
 
 		} else if (WIFSTOPPED(wstatus)){
-			signum = WSTOPSIG(wstatus);
-			// debug:
-			// print_pid(pid);
-			// print_sig(signum);
-	
-			handle_sigtraps(pid, &signum, &c_status.syscall, &c_status.tracestep, post_fd);
+			c_status.signum = WSTOPSIG(wstatus);
+			handle_sigtraps(&c_status, post_fd);
+
+			restart_trace(&c_status);
 
 		} else if (WIFCONTINUED(wstatus)) {
-			print_sig(SIGCONT);
+			c_status.signum = SIGCONT;
 
 		} else {
 			printf("others!\n");

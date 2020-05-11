@@ -67,6 +67,8 @@ int is_trace_status_on_singlestep(trace_step_status_t *ts_status)
 void init_child_status(pid_t pid, struct child_status *c_status)
 {
 	c_status->pid = pid;
+	c_status->signum = 0;
+	c_status->forked = 0;
 	init_syscall_status(&c_status->syscall);
 	trace_status_to_syscall(&c_status->tracestep);
 }
