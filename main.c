@@ -169,7 +169,7 @@ void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step
 
 int prepare_singlestep_tracing (pid_t pid, int pipefd[]) {
 	prepare_conv_table(pid);    		  // `pre-process`
-	return spawn_post_printer(*pipefd); // `post-proecess`
+	return spawn_post_printer(pipefd); // `post-proecess`
 }
 
 void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)

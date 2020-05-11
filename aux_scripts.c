@@ -49,7 +49,7 @@ void prepare_conv_table(pid_t child_pid)
 	run_aux_script_on_subprocess(args);
 }
 
-int spawn_post_printer(int *pipefd)
+int spawn_post_printer(int pipefd[])
 {
 	int res = pipe(pipefd);
 	if (res == -1) {
