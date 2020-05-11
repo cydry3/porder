@@ -21,6 +21,12 @@ typedef struct syscall_status {;
 	int in_syscall;
 } syscall_status;
 
+struct child_status {
+	pid_t pid;
+	syscall_status syscall;
+	trace_step_status_t tracestep;
+};
+
 
 // main.c
 void trace_status_to_syscall(trace_step_status_t *ts_status);
@@ -36,6 +42,8 @@ void start_trace(pid_t child_pid, int sig, trace_step_status_t *ts_status);
 void handle_sigtraps(pid_t pid, int *signum, syscall_status *sstatus, trace_step_status_t *ts_status, int post_fd);
 void start_trace_on_syscall(pid_t child_pid, int sig);
 void ignore_signal_number(int *sig);
+void restart_trace(pid_t pid, int sig, trace_step_status_t *ts_status);
+void stop_child(pid_t pid);
 
 // output.c
 void print_sig(int sig);
@@ -73,6 +81,8 @@ void trace_status_to_singlestep(trace_step_status_t *ts_status);
 void trace_status_to_syscall(trace_step_status_t *ts_status);
 int is_trace_status_on_singlestep(trace_step_status_t *ts_status);
 int is_trace_status_on_syscall(trace_step_status_t *ts_status);
+
+void init_child_status(pid_t pid, struct child_status *c_status);
 
 // args.c
 void args_parse(int *mode, char **dest, char **argv, size_t argc);

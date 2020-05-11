@@ -1,27 +1,5 @@
 #include "porder.h"
 
-struct child_status {
-	pid_t pid;
-	syscall_status syscall;
-	trace_step_status_t tracestep;
-};
-
-void init_child_status(pid_t pid, struct child_status *c_status)
-{
-	c_status->pid = pid;
-	init_syscall_status(&c_status->syscall);
-	trace_status_to_syscall(&c_status->tracestep);
-}
-
-void stop_child(pid_t pid)
-{
-	int ok = kill(pid, SIGKILL);
-	if (ok == 1) {
-		fprintf(stderr, "failed stop child process(PID:%d) %s", pid, strerror(errno));
-		exit(1);
-	}
-}
-
 int confirm_continue()
 {
 	char yes_or;
@@ -31,13 +9,6 @@ int confirm_continue()
 	getchar();
 
 	return (yes_or == 'y');
-}
-
-void restart_trace(pid_t pid, int sig, trace_step_status_t *ts_status)
-{
-	trace_option(pid);
-	ignore_signal_number(&sig);
-	start_trace(pid, sig, ts_status);
 }
 
 int debug_loop(pid_t child_pid)

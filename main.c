@@ -49,6 +49,15 @@ void continue_child(pid_t child_pid)
 	}
 }
 
+void stop_child(pid_t pid)
+{
+	int ok = kill(pid, SIGKILL);
+	if (ok == 1) {
+		fprintf(stderr, "failed stop child process(PID:%d) %s", pid, strerror(errno));
+		exit(1);
+	}
+}
+
 void start_trace_on_syscall(pid_t child_pid, int sig)
 {
 	long res = ptrace(PTRACE_SYSCALL, child_pid, NULL, sig);
@@ -79,6 +88,13 @@ void start_trace(pid_t child_pid, int sig, trace_step_status_t *ts_status)
 		fprintf(stderr, "unreachable in starting trace.\n");
 		exit(1);
 	}
+}
+
+void restart_trace(pid_t pid, int sig, trace_step_status_t *ts_status)
+{
+	trace_option(pid);
+	ignore_signal_number(&sig);
+	start_trace(pid, sig, ts_status);
 }
 
 int is_sigtrap(int *sig)
@@ -189,22 +205,22 @@ int parent_main(pid_t child_pid, int mode)
 	if (mode == 2)
 		return debug_loop(child_pid);
 
+	int signum = 0;
 	int wstatus = 0;
-	syscall_status sstatus;
-	init_syscall_status(&sstatus);
-
-	trace_step_status_t ts_status;
-	set_trace_status_by_mode(&ts_status, mode);
-
+	struct child_status c_status;
 	int post_fd = STDOUT_FILENO;
 	int pipefd[2];
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
-	continue_trace_option(pid);
-	continue_child(pid);
+
+	init_child_status(pid, &c_status);
+	set_trace_status_by_mode(&c_status.tracestep, mode);
+
+	continue_trace_option(c_status.pid);
+	continue_child(c_status.pid);
 
 	while (1) {
-		pid = waitpid(pid, &wstatus, 0);
+		pid = wait(&wstatus);
 		if (pid == -1)
 			return 1;
 
@@ -212,7 +228,7 @@ int parent_main(pid_t child_pid, int mode)
 			break;
 
 		} else if (WIFSIGNALED(wstatus)){
-			int signum = WTERMSIG(wstatus);
+			signum = WTERMSIG(wstatus);
 			// debug:
 			print_sig(signum);
 
@@ -220,19 +236,29 @@ int parent_main(pid_t child_pid, int mode)
 			// debug:
 			print_sig(wstatus>>8);
 
-			if (is_trace_status_on_singlestep(&ts_status))
+			if (is_trace_status_on_singlestep(&c_status.tracestep))
 				prepare_singlestep_tracing(pid, pipefd);
 
 			trace_option(pid);
-			start_trace(pid, 0, &ts_status);
+			start_trace(pid, 0, &c_status.tracestep);
+
+		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
+			signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d clone-ed(%d)\n", pid, signum);
+			restart_trace(pid, signum, &c_status.tracestep);
+
+		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
+			signum = (wstatus>>8);
+			fprintf(stderr, "PID:%d fork-ed(%d)\n", pid, signum);
+			restart_trace(pid, signum, &c_status.tracestep);
 
 		} else if (WIFSTOPPED(wstatus)){
-			int signum = WSTOPSIG(wstatus);
+			signum = WSTOPSIG(wstatus);
 			// debug:
 			// print_pid(pid);
 			// print_sig(signum);
 	
-			handle_sigtraps(pid, &signum, &sstatus, &ts_status, post_fd);
+			handle_sigtraps(pid, &signum, &c_status.syscall, &c_status.tracestep, post_fd);
 
 		} else if (WIFCONTINUED(wstatus)) {
 			print_sig(SIGCONT);
