@@ -63,3 +63,10 @@ int is_trace_status_on_singlestep(trace_step_status_t *ts_status)
 {
 	return (*ts_status == 0);
 }
+
+void init_child_status(pid_t pid, struct child_status *c_status)
+{
+	c_status->pid = pid;
+	init_syscall_status(&c_status->syscall);
+	trace_status_to_syscall(&c_status->tracestep);
+}

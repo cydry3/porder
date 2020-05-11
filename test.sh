@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#./porder -s /bin/ls
 ./porder -i /bin/ls
 
 #gcc -o ./test/a.out ./test/test_execve.c
