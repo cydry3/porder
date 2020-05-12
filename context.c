@@ -50,6 +50,7 @@ struct child_context *recept_context(pid_t pid)
 void set_fork_context(struct child_context *ctx)
 {
 	ctx->forked = 1;
+	once_toggle_exec_status(&ctx->syscall);
 }
 
 int is_fork_context(struct child_context *ctx)
