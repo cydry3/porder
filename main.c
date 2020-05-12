@@ -194,9 +194,9 @@ int prepare_singlestep_tracing (pid_t pid, int pipefd[]) {
 
 void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)
 {
-	if (mode == 0)
+	if (is_singlestep_mode(mode))
 		trace_status_to_singlestep(ts_status);
-	else if (mode == 1)
+	else if (is_syscall_mode(mode))
 		trace_status_to_syscall(ts_status);
 	else {
 		fprintf(stderr, "unexpected trace mode %d\n", mode);
@@ -206,7 +206,7 @@ void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)
 
 int parent_main(pid_t child_pid, int mode)
 {
-	if (mode == 2)
+	if (is_debug_mode(mode))
 		return debug_loop(child_pid);
 
 	int wstatus = 0;
@@ -216,6 +216,7 @@ int parent_main(pid_t child_pid, int mode)
 
 	struct child_context *c_ctx = enroll_context(pid);
 	set_trace_status_by_mode(&c_ctx->tracestep, mode);
+	set_verbose_ctx_by_mode(c_ctx, mode);
 
 	continue_trace_option(c_ctx->pid);
 	continue_child(c_ctx->pid);

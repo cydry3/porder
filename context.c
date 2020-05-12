@@ -91,3 +91,31 @@ void update_syscall_context(struct child_context *ctx)
 		ctx->after_exec = 1;
 	}
 }
+
+void set_verbose_context(struct child_context *ctx)
+{
+	ctx->verbose = 1;
+}
+
+int is_verbose(struct child_context *ctx)
+{
+	return (ctx->verbose == 1);
+}
+
+void init_child_context(pid_t pid, struct child_context *c_ctx)
+{
+	c_ctx->pid = pid;
+	c_ctx->signum = 0;
+	c_ctx->forked = 0;
+	c_ctx->verbose = 0;
+	init_syscall_status(&c_ctx->syscall);
+	trace_status_to_syscall(&c_ctx->tracestep);
+}
+
+void set_verbose_ctx_by_mode(struct child_context *ctx, int mode)
+{
+	if (is_verbose_mode(mode))
+		ctx->verbose = 1;
+	else
+		ctx->verbose = 0;
+}

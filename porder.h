@@ -15,6 +15,17 @@
 #include <search.h>
 #include <ctype.h>
 
+#define _GNU_SOURCE
+#include <sys/uio.h>
+
+ssize_t process_vm_readv(pid_t pid,
+						const struct iovec *local_iov,
+						unsigned long liovcnt,
+						const struct iovec *remote_iov,
+						unsigned long riovcnt,
+						unsigned long flags);
+
+
 
 typedef char trace_step_status_t;
 
@@ -30,6 +41,7 @@ struct child_context {
 	char start;
 	char end;
 	char after_exec;
+	char verbose;
 	syscall_status syscall;
 	trace_step_status_t tracestep;
 	struct user_regs_struct *regs;
@@ -95,6 +107,10 @@ void init_child_context (pid_t pid, struct child_context *c_ctx);
 
 // args.c
 void args_parse(int *mode, char **dest, char **argv, size_t argc);
+int is_syscall_mode(int mode);
+int is_singlestep_mode(int mode);
+int is_debug_mode(int mode);
+int is_verbose_mode(int mode);
 
 // debug.c
 int debug_loop(pid_t child_pid);
@@ -109,3 +125,5 @@ struct child_context *recept_context(pid_t pid);
 void set_fork_context(struct child_context *ctx);
 int is_fork_context(struct child_context *ctx);
 void update_syscall_context(struct child_context *ctx);
+void init_child_context(pid_t pid, struct child_context *c_ctx);
+void set_verbose_ctx_by_mode(struct child_context *ctx, int mode);

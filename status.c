@@ -64,11 +64,3 @@ int is_trace_status_on_singlestep(trace_step_status_t *ts_status)
 	return (*ts_status == 0);
 }
 
-void init_child_context(pid_t pid, struct child_context *c_ctx)
-{
-	c_ctx->pid = pid;
-	c_ctx->signum = 0;
-	c_ctx->forked = 0;
-	init_syscall_status(&c_ctx->syscall);
-	trace_status_to_syscall(&c_ctx->tracestep);
-}

@@ -451,25 +451,53 @@ void print_syscall_open(struct child_context *ctx)
 	}
 }
 
+void print_syscall_stat_verbose_retval(struct child_context *ctx)
+{
+	struct iovec local[1];
+	struct iovec remote[1];
+	struct stat buf;
+	ssize_t nread;
+	int statlen = sizeof(struct stat);
+
+	local[0].iov_base = &buf;
+	local[0].iov_len = statlen;
+
+	remote[0].iov_base = (void *)ctx->regs->rsi;
+	remote[0].iov_len = statlen;
+
+	nread = process_vm_readv(ctx->pid, local, 1, remote, 1, 0);
+	if (nread != statlen)
+		return;
+	else {
+		printf("dev:%lx,ino:%lx,mod:%x,uid:%x,gid:%x,siz:%lx,mtime:%lx...",
+				buf.st_dev, buf.st_ino, buf.st_mode, buf.st_uid, buf.st_gid,
+				buf.st_size, buf.st_mtime);
+	}
+}
+
+void print_syscall_fstat(struct child_context *ctx)
+{
+	if (ctx->end) {
+		if (ctx->verbose) {
+			print_syscall_stat_verbose_retval(ctx);
+		} else {
+			printf("0x%08llx", ctx->regs->rsi);
+		}
+	}
+}
+
 void print_syscall_stat(struct child_context *ctx)
 {
 	if (ctx->start) {
 		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
 		printf("0x%08llx", ctx->regs->rdx);
 	}
-	if (ctx->end)
-		printf("0x%08llx", ctx->regs->rsi);
+	print_syscall_fstat(ctx);
 }
 
 void print_syscall_lstat(struct child_context *ctx)
 {
 	print_syscall_stat(ctx);
-}
-
-void print_syscall_fstat(struct child_context *ctx)
-{
-	if (ctx->end)
-		printf("0x%08llx", ctx->regs->rsi);
 }
 
 void print_syscall_write(struct child_context *ctx)
