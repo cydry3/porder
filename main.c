@@ -139,7 +139,7 @@ void handle_on_syscall(struct child_context *c_ctx)
 	// Syscall before & after point. in addtion, exec after point.
 	if (is_exec_after(&c_ctx->syscall)) {
 		if (is_in_syscall(&c_ctx->syscall))
-			print_regs_at_end_point(c_ctx->pid);
+			print_regs_at_end_point(c_ctx);
 		else
 			print_regs_at_start_point(c_ctx->pid);
 
