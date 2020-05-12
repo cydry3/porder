@@ -243,7 +243,14 @@ int parent_main(pid_t child_pid, int mode)
 
 		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
 			c_ctx->signum = (wstatus>>8);
+			pid_t cloned_pid = get_pid_forked_on_child(pid);
+
+			struct child_context *cloned_ctx = enroll_context(cloned_pid);
+			set_trace_status_by_mode(&cloned_ctx->tracestep, mode);
+			set_fork_context(cloned_ctx);
+
 			restart_trace(c_ctx);
+			restart_trace(cloned_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_FORK<<8)) {
 			c_ctx->signum = (wstatus>>8);
