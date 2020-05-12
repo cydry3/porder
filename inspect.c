@@ -104,3 +104,14 @@ pid_t get_pid_forked_on_child(pid_t child_pid)
 	}
 	return cc_pid;
 }
+
+int get_user_register(struct user_regs_struct *regs, pid_t pid)
+{
+	long res = ptrace(PTRACE_GETREGS, pid, NULL, regs);
+	if (res == -1) {
+		fprintf(stderr, "failed get user regs\n");
+		return 0;
+	}
+	return 1;
+}
+

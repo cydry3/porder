@@ -27,8 +27,12 @@ struct child_context {
 	pid_t pid;
 	int signum;
 	char forked;
+	char start;
+	char end;
+	char after_exec;
 	syscall_status syscall;
 	trace_step_status_t tracestep;
+	struct user_regs_struct *regs;
 };
 
 
@@ -52,21 +56,21 @@ void stop_child(pid_t pid);
 // output.c
 void print_sig(int sig);
 void print_pid(pid_t pid);
-void print_exec_after_msg(unsigned long long int syscall_num);
+void print_exec_after_msg(struct child_context *ctx);
 void print_syscall_args_at_before_point(struct user_regs_struct *regs, pid_t pid);
 void print_syscall_args_at_after_point(struct user_regs_struct *regs, pid_t pid);
-void print_start_syscall_msg(struct user_regs_struct *regs, pid_t pid);
-void print_error_value(long long int err,
-						unsigned long long int syscall_num);
-void print_return_value(struct child_context *ctx, struct user_regs_struct *regs);
-void print_end_syscall_msg(struct child_context *ctx, struct user_regs_struct *regs);
+void print_start_syscall_msg(struct child_context *ctx);
+void print_error_value(struct child_context *ctx);
+void print_end_syscall_msg(struct child_context *ctx);
 void print_regs_at_after_exec_point(pid_t pid);
 void print_regs_at_start_point(pid_t pid);
 void print_regs_at_end_point(struct child_context *ctx);
 void print_child_memory_data(pid_t pid, void *addr);
 void print_instruction_on_child(pid_t pid);
-void print_syscall_name(unsigned long long int s);
+void print_syscall(struct child_context *ctx);
+void print_syscall_name(struct child_context *ctx);
 void print_fork_context(struct child_context *ctx);
+void print_syscall(struct child_context *ctx);
 
 
 // aux_scripts.c
@@ -97,9 +101,11 @@ int debug_loop(pid_t child_pid);
 
 // inspect.c
 pid_t get_pid_forked_on_child(pid_t child_pid);
+int get_user_register(struct user_regs_struct *regs, pid_t pid);
 
 // context.c
 struct child_context *enroll_context(pid_t pid);
 struct child_context *recept_context(pid_t pid);
 void set_fork_context(struct child_context *ctx);
 int is_fork_context(struct child_context *ctx);
+void update_syscall_context(struct child_context *ctx);
