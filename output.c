@@ -467,7 +467,8 @@ void print_syscall_arg_string(pid_t pid, long long unsigned int next)
 		long res = get_child_memory_data(pid, (void *)(next + (4 * j)));
 		for (int i = 0; i < 4; i++)  {
 			char c = res>>(8*i);
-			printf("%c", c);
+			if (isprint(c) && (!isspace(c)))
+				printf("%c", c);
 		}
 	}
 	printf("'");

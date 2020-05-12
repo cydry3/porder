@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <search.h>
+#include <ctype.h>
 
 
 typedef char trace_step_status_t;
