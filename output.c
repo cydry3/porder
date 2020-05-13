@@ -36,9 +36,9 @@ void print_syscall(struct child_context *ctx)
 	print_syscall_name(ctx);
 
 	if (ctx->start)
-		printf(" started");
+		printf(" started ");
 	else if (ctx->end)
-		printf(" ended   -> ");
+		printf(" ended-> ");
 
 	print_syscall_args(ctx);
 

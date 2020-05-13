@@ -235,6 +235,9 @@ int parent_main(pid_t child_pid, int mode)
 	set_trace_status_by_mode(&c_ctx->tracestep, mode);
 	set_verbose_ctx_by_mode(c_ctx, mode);
 
+	if (is_trace_status_on_singlestep(&c_ctx->tracestep))
+		prepare_singlestep_tracing(child_pid, pipefd);
+
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
 	c_ctx->signum = (wstatus>>8);
 
@@ -256,10 +259,6 @@ int parent_main(pid_t child_pid, int mode)
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
 			c_ctx->signum = (wstatus>>8);
-
-			if (is_trace_status_on_singlestep(&c_ctx->tracestep))
-				prepare_singlestep_tracing(pid, pipefd);
-
 			restart_trace(c_ctx);
 
 		} else if (wstatus>>8 == (SIGTRAP | (PTRACE_EVENT_CLONE<<8))) {
