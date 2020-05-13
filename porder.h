@@ -83,6 +83,7 @@ void print_syscall(struct child_context *ctx);
 void print_syscall_name(struct child_context *ctx);
 void print_fork_context(struct child_context *ctx);
 void print_syscall(struct child_context *ctx);
+void print_sigtrap_by_other_process(struct child_context *ctx);
 
 
 // aux_scripts.c

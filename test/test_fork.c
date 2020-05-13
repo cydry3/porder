@@ -16,7 +16,7 @@ int main()
 	}
 	
 	if (pid == 0) {
-		sleep(3);
+		sleep(300);
 		printf("tracee/C:exited\n");
 	} else {
 		printf("tracee/C:%d\n", pid);

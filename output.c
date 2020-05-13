@@ -533,3 +533,10 @@ void print_syscall_args(struct child_context *ctx)
 	}
 	printf(")");
 }
+
+void print_sigtrap_by_other_process(struct child_context *ctx)
+{
+	if (is_fork_context(ctx))
+		print_fork_context(ctx);
+	printf("Received signal(%d)\n", ctx->signum);
+}

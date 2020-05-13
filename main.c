@@ -167,9 +167,9 @@ void handle_sigtrap_by_tracing(struct child_context *c_ctx)
 	}
 }
 
-void handle_sigtrap_by_othter(struct child_context *c_ctx)
+void handle_sigtrap_by_other(struct child_context *c_ctx)
 {
-	printf("int3 instruction executed.\n");
+	print_sigtrap_by_other_process(c_ctx);
 }
 
 int is_on_tracing(struct child_context *c_ctx)
@@ -184,7 +184,7 @@ void handle_sigtraps(struct child_context *c_ctx)
 		handle_sigtrap_by_tracing(c_ctx);
 
 	else
-		handle_sigtrap_by_othter(c_ctx);
+		handle_sigtrap_by_other(c_ctx);
 }
 
 int prepare_singlestep_tracing (pid_t pid, int pipefd[]) {
