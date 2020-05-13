@@ -30,7 +30,6 @@ ssize_t process_vm_readv(pid_t pid,
 typedef char trace_step_status_t;
 
 typedef struct syscall_status {;
-	int exec_after;
 	int in_syscall;
 } syscall_status;
 
@@ -40,7 +39,6 @@ struct child_context {
 	char forked;
 	char start;
 	char end;
-	char after_exec;
 	char verbose;
 	syscall_status syscall;
 	trace_step_status_t tracestep;
@@ -64,17 +62,16 @@ void start_trace_on_syscall(struct child_context *c_ctx);
 void ignore_signal_number(int *sig);
 void restart_trace(struct child_context *c_ctx);
 void stop_child(pid_t pid);
+void continue_trace(struct child_context *ctx);
 
 // output.c
 void print_sig(int sig);
 void print_pid(pid_t pid);
-void print_exec_after_msg(struct child_context *ctx);
 void print_syscall_args_at_before_point(struct user_regs_struct *regs, pid_t pid);
 void print_syscall_args_at_after_point(struct user_regs_struct *regs, pid_t pid);
 void print_start_syscall_msg(struct child_context *ctx);
 void print_error_value(struct child_context *ctx);
 void print_end_syscall_msg(struct child_context *ctx);
-void print_regs_at_after_exec_point(pid_t pid);
 void print_regs_at_start_point(pid_t pid);
 void print_regs_at_end_point(struct child_context *ctx);
 void print_child_memory_data(pid_t pid, void *addr);
@@ -93,9 +90,7 @@ int spawn_post_printer();
 
 // status.c
 void init_syscall_status(syscall_status *s_status);
-void once_toggle_exec_status(syscall_status *s_status);
 void toggle_syscall_status(syscall_status *s_status);
-int is_exec_after(syscall_status *s_status);
 int is_in_syscall(syscall_status *s_status);
 int in_syscall(syscall_status *s_status);
 

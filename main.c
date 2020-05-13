@@ -24,7 +24,7 @@ void child_main(char **args)
 
 void continue_trace_option(pid_t child_pid)
 {
-	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACEEXEC);
+	long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL, PTRACE_O_TRACESYSGOOD|PTRACE_O_TRACEEXEC);
 	if (res == -1) {
 		fprintf(stderr, "failed set a trace option at a continue point\n");
 		exit(1);
@@ -53,14 +53,15 @@ void trace_option(pid_t child_pid)
 	}
 }
 
-void continue_child(pid_t child_pid)
+void continue_trace(struct child_context *ctx)
 {
-	long res = ptrace(PTRACE_CONT, child_pid, NULL, NULL);
+	long res = ptrace(PTRACE_CONT, ctx->pid, NULL, ctx->signum);
 	if (res == -1) {
 		fprintf(stderr, "failed continue a child process tracing\n");
 		exit(1);
 	}
 }
+
 
 void stop_child(pid_t pid)
 {
@@ -204,6 +205,24 @@ void set_trace_status_by_mode(trace_step_status_t *ts_status, int mode)
 	}
 }
 
+void ignore_trace_sigactions(struct child_context *ctx)
+{
+	int wstatus = 0;
+	int ignore = 3;
+
+	while (ignore > 0) {
+		pid_t pid = wait(&wstatus);
+		if (pid == -1) {
+			fprintf(stderr, "failed capturing system calls for preparing a command.\n");
+			exit(1);
+		}
+		if (WIFSTOPPED(wstatus)) {
+			restart_trace(ctx);
+			ignore--;
+		}
+	}
+}
+
 int parent_main(pid_t child_pid, int mode)
 {
 	if (is_debug_mode(mode))
@@ -212,14 +231,16 @@ int parent_main(pid_t child_pid, int mode)
 	int wstatus = 0;
 	int pipefd[2];
 
-	pid_t pid = waitpid(child_pid, &wstatus, 0);
-
-	struct child_context *c_ctx = enroll_context(pid);
+	struct child_context *c_ctx = enroll_context(child_pid);
 	set_trace_status_by_mode(&c_ctx->tracestep, mode);
 	set_verbose_ctx_by_mode(c_ctx, mode);
 
+	pid_t pid = waitpid(child_pid, &wstatus, 0);
+	c_ctx->signum = (wstatus>>8);
+
 	continue_trace_option(c_ctx->pid);
-	continue_child(c_ctx->pid);
+	continue_trace(c_ctx);
+	ignore_trace_sigactions(c_ctx);
 
 	while (1) {
 		pid = wait(&wstatus);

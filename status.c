@@ -2,23 +2,9 @@
 
 void init_syscall_status(syscall_status *s_status)
 {
-	s_status->exec_after = 0;
 	s_status->in_syscall = 0;
 }
 
-void once_toggle_exec_status(syscall_status *s_status)
-{
-	if (s_status->exec_after == 0) 
-		s_status->exec_after = 1;
-}
-
-int is_exec_after(syscall_status *s_status)
-{
-	int current_status = s_status->exec_after;
-
-	once_toggle_exec_status(s_status);
-	return current_status;
-}
 
 void toggle_syscall_status(syscall_status *s_status)
 {
@@ -38,10 +24,7 @@ int in_syscall(syscall_status *s_status)
 
 int is_in_syscall(syscall_status *s_status)
 {
-	if (is_exec_after(s_status))
-		return in_syscall(s_status);
-	else
-		return 0;
+	return in_syscall(s_status);
 }
 
 void trace_status_to_syscall(trace_step_status_t *ts_status)

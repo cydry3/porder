@@ -50,7 +50,6 @@ struct child_context *recept_context(pid_t pid)
 void set_fork_context(struct child_context *ctx)
 {
 	ctx->forked = 1;
-	once_toggle_exec_status(&ctx->syscall);
 }
 
 int is_fork_context(struct child_context *ctx)
@@ -69,28 +68,15 @@ int is_end_syscall(struct child_context *ctx)
 	return (is_in_syscall(&ctx->syscall));
 }
 
-int is_after_exec(struct child_context *ctx)
-{
-	return (is_exec_after(&ctx->syscall));
-
-}
-
 void update_syscall_context(struct child_context *ctx)
 {
 	ctx->start = 0;
 	ctx->end = 0;
-	ctx->after_exec = 0;
 
-	// syscall start point or end point
-	if (is_exec_after(&ctx->syscall)) {
-		if (is_in_syscall(&ctx->syscall))
-			ctx->end = 1;
-		else
-			ctx->start = 1;
-
-	} else {
-		ctx->after_exec = 1;
-	}
+	if (is_in_syscall(&ctx->syscall))
+		ctx->end = 1;
+	else
+		ctx->start = 1;
 }
 
 void set_verbose_context(struct child_context *ctx)

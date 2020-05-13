@@ -18,9 +18,10 @@ int debug_loop(pid_t child_pid)
 
 	pid_t pid = waitpid(child_pid, &wstatus, 0);
 	init_child_context (pid, &c_ctx);
+	c_ctx.signum = (wstatus>>8);
 
 	continue_trace_option(c_ctx.pid);
-	continue_child(c_ctx.pid);
+	continue_trace(&c_ctx);
 
 	while (1) {
 		pid = wait(&wstatus);
