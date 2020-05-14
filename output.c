@@ -421,16 +421,34 @@ void print_syscall_args_default(struct child_context *ctx)
 
 void print_syscall_arg_string(pid_t pid, long long unsigned int next)
 {
+	int max = 255;
 	printf("'");
 	for (int j = 0; j < 4; j++) {
 		long res = get_child_memory_data(pid, (void *)(next + (4 * j)));
 		for (int i = 0; i < 4; i++)  {
 			char c = res>>(8*i);
+			if ((c=='\0') || (--max<0))
+				goto term;
 			if (isprint(c) && (!isspace(c)))
 				printf("%c", c);
 		}
 	}
+term:
 	printf("'");
+}
+
+void print_syscall_argv_string(pid_t pid, char **ptr)
+{
+		printf(", [");
+		while (*ptr != NULL) {
+			print_syscall_arg_string(pid, (long long unsigned int)*ptr);
+			ptr++;
+			if (*ptr == NULL)
+				break;
+			else
+				printf(", ");
+		}
+		printf("], ");
 }
 
 void print_syscall_openat(struct child_context *ctx)
@@ -448,6 +466,15 @@ void print_syscall_open(struct child_context *ctx)
 		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
 		printf(", 0x%08llx", ctx->regs->rsi);
 		printf(", 0x%08llx", ctx->regs->rdx);
+	}
+}
+
+void print_syscall_execve(struct child_context *ctx)
+{
+	if (ctx->start) {
+		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rsi);
+		printf("0x%08llx", ctx->regs->rdx);
 	}
 }
 
@@ -528,6 +555,7 @@ void print_syscall_args(struct child_context *ctx)
 		case __NR_stat /* 4 */: print_syscall_stat(ctx); break;
 		case __NR_fstat /* 5 */: print_syscall_fstat(ctx); break;
 		case __NR_lstat /* 6 */: print_syscall_lstat(ctx); break;
+		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_default(ctx); break;
 	}
