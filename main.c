@@ -55,7 +55,7 @@ void trace_option(pid_t child_pid)
 
 void continue_trace(struct child_context *ctx)
 {
-	long res = ptrace(PTRACE_CONT, ctx->pid, NULL, ctx->signum);
+	long res = ptrace(PTRACE_SYSCALL, ctx->pid, NULL, ctx->signum);
 	if (res == -1) {
 		fprintf(stderr, "failed continue a child process tracing\n");
 		exit(1);
@@ -287,7 +287,11 @@ int parent_main(pid_t child_pid, int mode)
 			c_ctx->signum = WSTOPSIG(wstatus);
 			handle_sigtraps(c_ctx);
 
-			restart_trace(c_ctx);
+			if (is_on_tracing(c_ctx))
+				restart_trace(c_ctx);
+			else {
+				continue_trace(c_ctx);
+			}
 
 		} else if (WIFCONTINUED(wstatus)) {
 			c_ctx->signum = SIGCONT;
