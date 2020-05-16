@@ -2,6 +2,11 @@
 
 void print_syscall_args(struct child_context *ctx);
 
+void print_sep()
+{
+	printf(", ");
+}
+
 void print_sig(int sig)
 {
 	printf("Child received signal %d\n", sig);
@@ -478,7 +483,7 @@ term:
 
 void print_syscall_argv_string(pid_t pid, char **ptr)
 {
-		printf(", [");
+		printf("[");
 		void *deref_p = deref_child_pointer(pid, (void *)ptr);
 		while(deref_p != NULL) {
 			print_syscall_arg_string(pid, (long long unsigned int)deref_p);
@@ -490,7 +495,7 @@ void print_syscall_argv_string(pid_t pid, char **ptr)
 			else
 				printf(", ");
 		}
-		printf("], ");
+		printf("]");
 }
 
 void print_syscall_openat(struct child_context *ctx)
@@ -515,8 +520,13 @@ void print_syscall_execve(struct child_context *ctx)
 {
 	if (ctx->start) {
 		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		print_sep();
 		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rsi);
-		printf("0x%08llx", ctx->regs->rdx);
+		print_sep();
+		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rdx);
+	}
+	if (ctx->start) {
+
 	}
 }
 
