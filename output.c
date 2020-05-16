@@ -479,10 +479,13 @@ term:
 void print_syscall_argv_string(pid_t pid, char **ptr)
 {
 		printf(", [");
-		while (*ptr != NULL) {
-			print_syscall_arg_string(pid, (long long unsigned int)*ptr);
+		void *deref_p = deref_child_pointer(pid, (void *)ptr);
+		while(deref_p != NULL) {
+			print_syscall_arg_string(pid, (long long unsigned int)deref_p);
 			ptr++;
-			if (*ptr == NULL)
+
+			deref_p = deref_child_pointer(pid, (void *)ptr);
+			if (deref_p == NULL)
 				break;
 			else
 				printf(", ");

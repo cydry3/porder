@@ -114,6 +114,7 @@ int debug_loop(pid_t child_pid);
 // inspect.c
 pid_t get_pid_forked_on_child(pid_t child_pid);
 int get_user_register(struct user_regs_struct *regs, pid_t pid);
+void *deref_child_pointer(pid_t pid, void *ptr);
 
 // context.c
 struct child_context *enroll_context(pid_t pid);

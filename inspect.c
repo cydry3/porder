@@ -115,3 +115,7 @@ int get_user_register(struct user_regs_struct *regs, pid_t pid)
 	return 1;
 }
 
+void *deref_child_pointer(pid_t pid, void *ptr)
+{
+	return (void *)get_child_memory_data(pid, ptr);
+}
