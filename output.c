@@ -14,14 +14,14 @@ void print_sig(int sig)
 
 void print_pid(pid_t pid)
 {
-	printf("pid: %d ", pid);
+	printf("pid:%d", pid);
 }
 
 void print_fork_context(struct child_context *ctx)
 {
-	printf("[");
+	printf("\x1b[33m" "[");
 	print_pid(ctx->pid);
-	printf("] ");
+	printf("]" "\x1b[0m");
 }
 
 void print_syscall_retval(struct child_context *ctx)
@@ -61,9 +61,10 @@ void print_child_memory_data(pid_t pid, void *addr)
 
 void print_instruction_on_child(pid_t pid)
 {
-	char rip_addr[16];
+	char rip_addr[41];
 	struct user_regs_struct regs;
 
+	printf("\x1b[36m[instruction]\x1b[0m ");
 	if (get_user_register(&regs, pid)) {
 		sprintf(rip_addr, "%llx\n", regs.rip);
 		int ok = write(STDOUT_FILENO, rip_addr, strlen(rip_addr));
@@ -76,7 +77,7 @@ void print_instruction_on_child(pid_t pid)
 
 void print_syscall_name(struct child_context *ctx)
 {
-	printf("Syscall (");
+	printf("\x1b[32m" "[syscall]" "\x1b[0m" "(");
 	switch (ctx->regs->orig_rax) {
 		case __NR_read /* 0 */: printf("read"); break;
 		case __NR_write /* 1 */: printf("write"); break;

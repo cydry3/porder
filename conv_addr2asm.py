@@ -26,7 +26,7 @@ class Addr2Asm:
             m = self.regex_pat[0].match(line)
             if m:
                 if addr == m.group(1):
-                    print("%s %s" % (m.group(1), m.group(2)))
+                    print("\x1b[96m[instruction]\x1b[0m %s %s" % (m.group(1), m.group(2)))
                     self.table_file[0].seek(0)
                     return
         self.table_file[0].seek(0)
