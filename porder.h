@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 #include <search.h>
 #include <ctype.h>
+#include <time.h>
 
 #define _GNU_SOURCE
 #include <sys/uio.h>
@@ -124,3 +125,6 @@ int is_fork_context(struct child_context *ctx);
 void update_syscall_context(struct child_context *ctx);
 void init_child_context(pid_t pid, struct child_context *c_ctx);
 void set_verbose_ctx_by_mode(struct child_context *ctx, int mode);
+
+// util.c
+void retry_interval_nano();

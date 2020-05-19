@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #./porder -s /bin/ls
-./porder -i /bin/ls
+#./porder -i /bin/ls
+./porder /usr/bin/rg hello .
 
 #gcc -o ./test/a.out ./test/test_execve.c
 #./porder -d ./test/a.out

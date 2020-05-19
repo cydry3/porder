@@ -33,13 +33,14 @@ void continue_trace_option(pid_t child_pid)
 
 int try_trace_option(pid_t child_pid)
 {
-	int lim = 8;
+	int lim = 256;
 	while (lim > 0) {
 		long res = ptrace(PTRACE_SETOPTIONS, child_pid, NULL,
 							PTRACE_O_TRACESYSGOOD|PTRACE_O_TRACEEXEC|PTRACE_O_TRACECLONE|PTRACE_O_TRACEFORK);
 		if (res != -1)
 			return 0;
 		lim--;
+		retry_interval_nano();
 	}
 	return -1;
 }
