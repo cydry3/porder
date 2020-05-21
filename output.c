@@ -412,8 +412,6 @@ void print_syscall_name(struct child_context *ctx)
 		case __NR_pkey_alloc /* 330 */: printf("pkey_alloc"); break;
 		case __NR_pkey_free /* 331 */: printf("pkey_free"); break;
 		case __NR_statx /* 332 */: printf("statx"); break;
-		case __NR_io_pgetevents /* 333 */: printf("io_pgetevents"); break;
-		case __NR_rseq /* 334 */: printf("rseq"); break;
 		default: break;
 	}
 	printf(")");

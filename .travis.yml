@@ -1,0 +1,11 @@
+dist: bionic
+
+language: C
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install autotools-dev automake build-essential libc6-dev
+
+before_script:
+  - autoreconf --install
+

@@ -38,6 +38,11 @@ int valid_argc(size_t argc)
 
 void args_parse(int *mode, char **dest, char **argv, size_t argc)
 {
+	if (argc < 2) {
+		print_usage(argv);
+		exit(0);
+	}
+
 	opt_parse(mode, argv, 2);
 
 	if (!valid_argc(argc)) {
