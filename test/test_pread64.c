@@ -23,4 +23,11 @@ int main()
 	pread(fd, buf, read_size, offset);
 	printf("%s", buf);
 	close(fd);
+
+	int null_fd = open("/dev/null", O_WRONLY);
+	if (null_fd == -1) {
+		fprintf(stderr, "failed open file.\n");
+		exit(1);
+	}
+	pwrite(null_fd, buf, read_size, offset);
 }
