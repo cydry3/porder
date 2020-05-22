@@ -763,6 +763,22 @@ void print_syscall_rt_sigaction(struct child_context *ctx)
 	}
 }
 
+/* 14 */
+void print_syscall_rt_sigprocmask(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(%d", (int)ctx->regs->rdi); // how
+		printf(", 0x%08llx", ctx->regs->rsi); // sigset_t *set
+		printf(", 0x%08llx)", ctx->regs->rdx); // sigset_t *oldset
+	}
+	if (ctx->end) {
+		printf("(.., ..");
+		printf(", 0x%08llx)", ctx->regs->rdx); // sigset_t *oldset
+
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -811,6 +827,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_munmap /* 11 */: print_syscall_munmap(ctx); break;
 		case __NR_brk /* 12 */: print_syscall_brk(ctx); break;
 		case __NR_rt_sigaction /* 13 */: print_syscall_rt_sigaction(ctx); break;
+		case __NR_rt_sigprocmask /* 14 */: print_syscall_rt_sigprocmask(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
