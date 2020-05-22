@@ -68,21 +68,20 @@ void continue_trace(struct child_context *ctx);
 // output.c
 void print_sig(int sig);
 void print_pid(pid_t pid);
-void print_syscall_args_at_before_point(struct user_regs_struct *regs, pid_t pid);
-void print_syscall_args_at_after_point(struct user_regs_struct *regs, pid_t pid);
-void print_start_syscall_msg(struct child_context *ctx);
-void print_error_value(struct child_context *ctx);
-void print_end_syscall_msg(struct child_context *ctx);
-void print_regs_at_start_point(pid_t pid);
-void print_regs_at_end_point(struct child_context *ctx);
-void print_child_memory_data(pid_t pid, void *addr);
 void print_instruction_on_child(pid_t pid);
 void print_syscall(struct child_context *ctx);
-void print_syscall_name(struct child_context *ctx);
 void print_fork_context(struct child_context *ctx);
 void print_syscall(struct child_context *ctx);
 void print_sigtrap_by_other_process(struct child_context *ctx);
 
+// name.c
+void print_syscall_name(struct child_context *ctx);
+
+// retval.c
+void print_syscall_args_retval(struct child_context *ctx);
+
+// signal.c
+void print_signal_string(int signum);
 
 // aux_scripts.c
 void prepare_conv_table(pid_t child_pid);
