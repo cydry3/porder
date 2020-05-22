@@ -663,6 +663,19 @@ void print_syscall_lstat(struct child_context *ctx)
 	print_syscall_stat(ctx);
 }
 
+/* 7 */
+void print_syscall_poll(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fds:0x%08llx", ctx->regs->rdi); // struct pollfd *fds
+		printf(", %ld", (long)ctx->regs->rsi); // nfds_t
+		printf(", %d)", (int)ctx->regs->rdx); // timeout
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 13 */
 void print_syscall_rt_sigaction(struct child_context *ctx)
 {
@@ -722,6 +735,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_stat /* 4 */: print_syscall_stat(ctx); break;
 		case __NR_fstat /* 5 */: print_syscall_fstat(ctx); break;
 		case __NR_lstat /* 6 */: print_syscall_lstat(ctx); break;
+		case __NR_poll /* 7 */:  print_syscall_poll(ctx); break;
 		case __NR_rt_sigaction /* 13 */: print_syscall_rt_sigaction(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
