@@ -803,6 +803,38 @@ void print_syscall_ioctl(struct child_context *ctx)
 	}
 }
 
+/* 17 */
+void print_syscall_pread64(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx", ctx->regs->rdi);
+		printf(", ..");                             // buf
+		printf(", %d", (int)ctx->regs->rdx); 		// size_t count
+		printf(", %ld)", (long)ctx->regs->r10);   // off_t  offset
+	}
+	if (ctx->end) {
+		printf("(.., ");
+		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
+		printf(", .., ..)");
+		printf(" = %ld", (unsigned long)ctx->regs->rax);    // return value is ssize_t.
+	}
+}
+
+/* 19 */
+void print_syscall_pwrite64(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		print_syscall_arg_string(ctx->pid, ctx->regs->rsi); // buf
+		printf(", %d", (int)ctx->regs->rdx); 		// size_t count
+		printf(", %ld)", (long)ctx->regs->r10);   // off_t  offset
+	}
+	if (ctx->end) {
+		printf("(.., .., ..)");
+		printf(" = %ld", (unsigned long)ctx->regs->rax);    // return value is ssize_t.
+	}
+}
+
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -854,6 +886,8 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_rt_sigprocmask /* 14 */: print_syscall_rt_sigprocmask(ctx); break;
 		case __NR_rt_sigreturn /* 15 */: print_syscall_rt_sigreturn(ctx); break;
 		case __NR_ioctl /* 16 */: print_syscall_ioctl(ctx); break;
+		case __NR_pread64 /* 17 */: print_syscall_pread64(ctx); break;
+		case __NR_pwrite64 /* 18 */: print_syscall_pwrite64(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
