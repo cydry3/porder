@@ -27,11 +27,9 @@ void print_fork_context(struct child_context *ctx)
 
 void print_syscall_retval(struct child_context *ctx)
 {
-	if (ctx->regs->rax < 0) {
-		printf(" = (err:0x%08llx)", ctx->regs->rax);
-	} else {
-		printf(" = (0x%08llx)", ctx->regs->rax);
-	}
+	printf(" = %d", (int)ctx->regs->rax);
+	if (ctx->regs->rax == -1)
+		printf("(err)");
 }
 
 void print_syscall(struct child_context *ctx)
@@ -460,12 +458,22 @@ void print_syscall_args_debug(struct child_context *ctx)
 			ctx->regs->rdi, ctx->regs->rsi, ctx->regs->rdx);
 }
 
-void print_syscall_args_unimplemented(struct child_context *ctx)
+void print_syscall_args_retval_unimplemented(struct child_context *ctx)
 {
+	printf("(");
 	if (ctx->start)
 		printf("...");
 	if (ctx->end)
 		printf("...");
+	printf(")");
+
+	if (ctx->end) {
+		if (ctx->regs->rax < 0) {
+			printf(" = (err:0x%08llx)", ctx->regs->rax);
+		} else {
+			printf(" = (0x%08llx)", ctx->regs->rax);
+		}
+	}
 }
 
 void print_syscall_arg_string(pid_t pid, long long unsigned int next)
@@ -503,37 +511,6 @@ void print_syscall_argv_string(pid_t pid, char **ptr)
 		printf("]");
 }
 
-void print_syscall_openat(struct child_context *ctx)
-{
-	if (ctx->start) {
-		printf("0x%08llx, ", ctx->regs->rdi);
-		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
-		printf(", 0x%08llx", ctx->regs->rdx);
-	}
-}
-
-void print_syscall_open(struct child_context *ctx)
-{
-	if (ctx->start) {
-		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
-		printf(", 0x%08llx", ctx->regs->rsi);
-		printf(", 0x%08llx", ctx->regs->rdx);
-	}
-}
-
-void print_syscall_execve(struct child_context *ctx)
-{
-	if (ctx->start) {
-		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
-		print_sep();
-		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rsi);
-		print_sep();
-		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rdx);
-	}
-	if (ctx->start) {
-
-	}
-}
 
 void print_syscall_stat_verbose_retval(struct child_context *ctx)
 {
@@ -559,49 +536,20 @@ void print_syscall_stat_verbose_retval(struct child_context *ctx)
 	}
 }
 
-void print_syscall_fstat(struct child_context *ctx)
+void print_syscall_args(struct child_context *ctx)
 {
-	if (ctx->end) {
-		if (ctx->verbose) {
-			print_syscall_stat_verbose_retval(ctx);
-		} else {
-			printf("0x%08llx", ctx->regs->rsi);
-		}
+	switch (ctx->regs->orig_rax) {
 	}
 }
 
-void print_syscall_stat(struct child_context *ctx)
+void print_sigtrap_by_other_process(struct child_context *ctx)
 {
-	if (ctx->start) {
-		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
-		printf("0x%08llx", ctx->regs->rdx);
-	}
-	print_syscall_fstat(ctx);
+	if (is_fork_context(ctx))
+		print_fork_context(ctx);
+	printf("Received signal(%d)\n", ctx->signum);
 }
 
-void print_syscall_lstat(struct child_context *ctx)
-{
-	print_syscall_stat(ctx);
-}
-
-void print_syscall_rt_sigaction(struct child_context *ctx)
-{
-	if (ctx->start) {
-		print_signal_string(ctx->regs->rdi);
-		printf(", 0x%08llx", ctx->regs->rsi);
-		printf(", 0x%08llx", ctx->regs->rdx);
-	}
-}
-
-void print_syscall_write(struct child_context *ctx)
-{
-	if (ctx->start) {
-		printf("0x%08llx, ", ctx->regs->rdi);
-		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
-		printf(", 0x%08llx", ctx->regs->rdx);
-	}
-}
-
+/* 0 */
 void print_syscall_read(struct child_context *ctx)
 {
 	if (ctx->start) {
@@ -613,18 +561,150 @@ void print_syscall_read(struct child_context *ctx)
 	if (ctx->end) {
 		printf("(fd:0x%08llx, ", ctx->regs->rdi);
 		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
-		printf(", %d)", (int)ctx->regs->rdx);
-		printf(" = %ld", (unsigned long)ctx->regs->rax);
+		printf(", %d)", (int)ctx->regs->rdx); 				// size_t count
+		printf(" = %ld", (unsigned long)ctx->regs->rax);    // return value is ssize_t.
 
 		if (ctx->regs->rax == -1)
 			printf("(err)");
 	}
 }
 
-void print_syscall_args(struct child_context *ctx)
+/* 1 */
+void print_syscall_write(struct child_context *ctx)
 {
-	printf("(");
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		printf("..");
+		printf(", %d)", (int)ctx->regs->rdx);
+	}
+	if (ctx->end) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
+		printf(", %d)", (int)ctx->regs->rdx); 			   // size_t count
+		printf(" = %ld", (unsigned long)ctx->regs->rax);   // return value is ssize_t
+
+		if (ctx->regs->rax == -1)
+			printf("(err)");
+	}
+}
+
+/* 2 */
+void print_syscall_open(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(");
+		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		printf(", %d", (int)ctx->regs->rsi);
+		printf(", %d", (int)ctx->regs->rdx); // mode_t mode
+		printf(")");
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 4 */
+void print_syscall_stat(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(");
+		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		printf("0x%08llx)", ctx->regs->rdx);
+	}
+
+	if (ctx->end) {
+		printf("(.., ");
+		if (ctx->verbose) {
+			print_syscall_stat_verbose_retval(ctx); // struct stat *statbuf
+		} else {
+			printf(", 0x%08llx)", ctx->regs->rdx);
+		}
+		printf(")");
+
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 5 */
+void print_syscall_fstat(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		printf("0x%08llx)", ctx->regs->rsi);
+	}
+
+	if (ctx->end) {
+		printf("(.., ");
+		if (ctx->verbose) {
+			print_syscall_stat_verbose_retval(ctx);
+		} else {
+			printf("..");
+		}
+		printf(")");
+
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 6 */
+void print_syscall_lstat(struct child_context *ctx)
+{
+	print_syscall_stat(ctx);
+}
+
+/* 13 */
+void print_syscall_rt_sigaction(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(");
+		print_signal_string(ctx->regs->rdi);
+		printf(", act, oldact, sigsetsize)");
+	}
+	if (ctx->end) {
+		printf("(..");
+		printf(", 0x%08llx", ctx->regs->rsi);
+		printf(", 0x%08llx", ctx->regs->rdx);
+		printf(", %d)", (int)ctx->regs->r10); // size_t sigsetsize
+
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 59 */
+void print_syscall_execve(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(");
+		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		print_sep();
+		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rsi);
+		print_sep();
+		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rdx);
+		printf(")");
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 257 */
+void print_syscall_openat(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(dir(0x%08llx), ", ctx->regs->rdi);
+		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
+		printf(", %d", (int)ctx->regs->rdx);
+		printf(", %d)", (int)ctx->regs->r10); // mode_t mode
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
+void print_syscall_args_retval(struct child_context *ctx)
+{
 	switch (ctx->regs->orig_rax) {
+		case __NR_read /* 0 */: print_syscall_read(ctx); break;
 		case __NR_write /* 1 */: print_syscall_write(ctx); break;
 		case __NR_open /* 2 */: print_syscall_open(ctx); break;
 		case __NR_stat /* 4 */: print_syscall_stat(ctx); break;
@@ -633,27 +713,6 @@ void print_syscall_args(struct child_context *ctx)
 		case __NR_rt_sigaction /* 13 */: print_syscall_rt_sigaction(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
-		default: print_syscall_args_unimplemented(ctx); break;
-	}
-	printf(")");
-}
-
-void print_sigtrap_by_other_process(struct child_context *ctx)
-{
-	if (is_fork_context(ctx))
-		print_fork_context(ctx);
-	printf("Received signal(%d)\n", ctx->signum);
-}
-
-
-void print_syscall_args_retval(struct child_context *ctx)
-{
-	switch (ctx->regs->orig_rax) {
-		case __NR_read /* 0 */: print_syscall_read(ctx); break;
-		default:
-			print_syscall_args(ctx);
-			if (ctx->end)
-				print_syscall_retval(ctx);
-			break;
+		default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
 }
