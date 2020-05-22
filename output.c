@@ -603,6 +603,17 @@ void print_syscall_open(struct child_context *ctx)
 	}
 }
 
+/* 3 */
+void print_syscall_close(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx)", ctx->regs->rdi);
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 4 */
 void print_syscall_stat(struct child_context *ctx)
 {
@@ -705,6 +716,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
 		case __NR_read /* 0 */: print_syscall_read(ctx); break;
+		case __NR_close /* 3 */: print_syscall_close(ctx); break;
 		case __NR_write /* 1 */: print_syscall_write(ctx); break;
 		case __NR_open /* 2 */: print_syscall_open(ctx); break;
 		case __NR_stat /* 4 */: print_syscall_stat(ctx); break;
