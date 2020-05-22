@@ -257,6 +257,8 @@ int parent_main(pid_t child_pid, int mode)
 
 		} else if (WIFSIGNALED(wstatus)){
 			c_ctx->signum = WTERMSIG(wstatus);
+			if (c_ctx->pid == child_pid)
+				break;
 
 		} else if (wstatus>>8 == (SIGTRAP | PTRACE_EVENT_EXEC << 8)) {
 			c_ctx->signum = (wstatus>>8);
