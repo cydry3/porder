@@ -779,6 +779,17 @@ void print_syscall_rt_sigprocmask(struct child_context *ctx)
 	}
 }
 
+/* 15 */
+void print_syscall_rt_sigreturn(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(...)"); // This system call should never be called.
+	}
+	if (ctx->end) {
+		printf(" = %d", (int)ctx->regs->rax); // never returns.
+	}
+}
+
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -828,6 +839,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_brk /* 12 */: print_syscall_brk(ctx); break;
 		case __NR_rt_sigaction /* 13 */: print_syscall_rt_sigaction(ctx); break;
 		case __NR_rt_sigprocmask /* 14 */: print_syscall_rt_sigprocmask(ctx); break;
+		case __NR_rt_sigreturn /* 15 */: print_syscall_rt_sigreturn(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
