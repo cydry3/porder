@@ -1,6 +1,7 @@
 #include "porder.h"
 
 void print_syscall_args(struct child_context *ctx);
+void print_syscall_args_retval(struct child_context *ctx);
 
 void print_sep()
 {
@@ -45,10 +46,7 @@ void print_syscall(struct child_context *ctx)
 	else if (ctx->end)
 		printf(" ended-> ");
 
-	print_syscall_args(ctx);
-
-	if (ctx->end)
-		print_syscall_retval(ctx);
+	print_syscall_args_retval(ctx);
 
 	printf("\n");
 }
@@ -639,3 +637,13 @@ void print_sigtrap_by_other_process(struct child_context *ctx)
 }
 
 
+void print_syscall_args_retval(struct child_context *ctx)
+{
+	switch (ctx->regs->orig_rax) {
+		default:
+			print_syscall_args(ctx);
+			if (ctx->end)
+				print_syscall_retval(ctx);
+			break;
+	}
+}
