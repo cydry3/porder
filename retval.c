@@ -361,7 +361,7 @@ void print_syscall_pread64(struct child_context *ctx)
 	}
 }
 
-/* 19 */
+/* 18 */
 void print_syscall_pwrite64(struct child_context *ctx)
 {
 	if (ctx->start) {
@@ -369,6 +369,34 @@ void print_syscall_pwrite64(struct child_context *ctx)
 		print_syscall_arg_string(ctx->pid, ctx->regs->rsi); // buf
 		printf(", %d", (int)ctx->regs->rdx); 		// size_t count
 		printf(", %ld)", (long)ctx->regs->r10);   // off_t  offset
+	}
+	if (ctx->end) {
+		printf("(.., .., ..)");
+		printf(" = %ld", (unsigned long)ctx->regs->rax);    // return value is ssize_t.
+	}
+}
+
+/* 19 */
+void print_syscall_readv(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		printf("%p", (void *)ctx->regs->rsi);			 // struct iovec *iov
+		printf(", %d)", (int)ctx->regs->rdx);   // int iovcnt
+	}
+	if (ctx->end) {
+		printf("(.., .., ..)");
+		printf(" = %ld", (unsigned long)ctx->regs->rax);    // return value is ssize_t.
+	}
+}
+
+/* 20 */
+void print_syscall_writev(struct child_context *ctx)
+{
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		printf("%p", (void *)ctx->regs->rsi);	// struct iovec *iov
+		printf(", %d)", (int)ctx->regs->rdx);   // int iovcnt
 	}
 	if (ctx->end) {
 		printf("(.., .., ..)");
@@ -429,6 +457,8 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_ioctl /* 16 */: print_syscall_ioctl(ctx); break;
 		case __NR_pread64 /* 17 */: print_syscall_pread64(ctx); break;
 		case __NR_pwrite64 /* 18 */: print_syscall_pwrite64(ctx); break;
+		case __NR_readv /* 19 */: print_syscall_readv(ctx); break;
+		case __NR_writev /* 20 */: print_syscall_writev(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
