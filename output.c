@@ -604,10 +604,20 @@ void print_syscall_write(struct child_context *ctx)
 
 void print_syscall_read(struct child_context *ctx)
 {
+	if (ctx->start) {
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
+		printf("..");
+		printf(", %d)", (int)ctx->regs->rdx);
+	}
+
 	if (ctx->end) {
-		printf("0x%08llx, ", ctx->regs->rdi);
+		printf("(fd:0x%08llx, ", ctx->regs->rdi);
 		print_syscall_arg_string(ctx->pid, ctx->regs->rsi);
-		printf(", 0x%08llx", ctx->regs->rdx);
+		printf(", %d)", (int)ctx->regs->rdx);
+		printf(" = %ld", (unsigned long)ctx->regs->rax);
+
+		if (ctx->regs->rax == -1)
+			printf("(err)");
 	}
 }
 
@@ -615,7 +625,6 @@ void print_syscall_args(struct child_context *ctx)
 {
 	printf("(");
 	switch (ctx->regs->orig_rax) {
-		case __NR_read /* 0 */: print_syscall_read(ctx); break;
 		case __NR_write /* 1 */: print_syscall_write(ctx); break;
 		case __NR_open /* 2 */: print_syscall_open(ctx); break;
 		case __NR_stat /* 4 */: print_syscall_stat(ctx); break;
@@ -640,6 +649,7 @@ void print_sigtrap_by_other_process(struct child_context *ctx)
 void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
+		case __NR_read /* 0 */: print_syscall_read(ctx); break;
 		default:
 			print_syscall_args(ctx);
 			if (ctx->end)
