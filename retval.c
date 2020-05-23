@@ -5,6 +5,26 @@ void print_sep()
 	printf(", ");
 }
 
+void arg_sep()
+{
+	print_sep();
+}
+
+void paren_open()
+{
+	printf("(");
+}
+
+void paren_close()
+{
+	printf(")");
+}
+
+void int_as(long long unsigned int reg)
+{
+	printf("%d", (int)reg);   // int iovcnt
+}
+
 void print_syscall_retval(struct child_context *ctx)
 {
 	printf(" = %d", (int)ctx->regs->rax);
@@ -29,6 +49,12 @@ void print_syscall_arg_string(pid_t pid, long long unsigned int next)
 term:
 	printf("'");
 }
+
+void str_as(pid_t pid, long long unsigned int reg)
+{
+	print_syscall_arg_string(pid, reg);
+}
+
 
 void print_syscall_argv_string(pid_t pid, char **ptr)
 {
@@ -404,6 +430,21 @@ void print_syscall_writev(struct child_context *ctx)
 	}
 }
 
+/* 21 */
+void print_syscall_access(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		str_as(ctx->pid, ctx->regs->rdi);
+		arg_sep();
+		int_as(ctx->regs->rsi);
+		paren_close();
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -459,6 +500,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_pwrite64 /* 18 */: print_syscall_pwrite64(ctx); break;
 		case __NR_readv /* 19 */: print_syscall_readv(ctx); break;
 		case __NR_writev /* 20 */: print_syscall_writev(ctx); break;
+		case __NR_access /* 21 */: print_syscall_access(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
