@@ -1,0 +1,1472 @@
+mode 1
+cmd  /usr/bin/curl
+[32m[syscall][0m(execve) started ('/usr/bin/curl', ['/usr/bin/curl', '-I', 'google.com'], [])
+[32m[syscall][0m(execve) ended->  = 0
+[32m[syscall][0m(brk) started (0x00000000)
+[32m[syscall][0m(brk) ended->  = 0x564726f3b000
+[32m[syscall][0m(access) started ('/etc/ld.so.prelo', 4)
+[32m[syscall][0m(access) ended->  = -2
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/ld.so.cache', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7df0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 220582, 1, 2, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf483d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7e50)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf483b000
+[32m[syscall][0m(mmap) started (0x00000000, 591336, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf47aa000
+[32m[syscall][0m(mmap) started (0x7fcdf47b7000, 405504, 5, 2066, fd:0x00000003, 53248)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf47b7000
+[32m[syscall][0m(mmap) started (0x7fcdf481a000, 114688, 1, 2066, fd:0x00000003, 458752)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf481a000
+[32m[syscall][0m(mmap) started (0x7fcdf4836000, 20480, 3, 2066, fd:0x00000003, 569344)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4836000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7e30)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 2216336, 5, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf458c000
+[32m[syscall][0m(mprotect) started (0x7fcdf45a8000, 2097152, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf47a8000, 8192, 3, 2066, fd:0x00000003, 114688)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf47a8000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7e10)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 132288, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf456b000
+[32m[syscall][0m(mmap) started (0x7fcdf4571000, 61440, 5, 2066, fd:0x00000003, 24576)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4571000
+[32m[syscall][0m(mmap) started (0x7fcdf4580000, 24576, 1, 2066, fd:0x00000003, 86016)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4580000
+[32m[syscall][0m(mmap) started (0x7fcdf4586000, 8192, 3, 2066, fd:0x00000003, 106496)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4586000
+[32m[syscall][0m(mmap) started (0x7fcdf4588000, 13504, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4588000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7df0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 1837056, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf43aa000
+[32m[syscall][0m(mprotect) started (0x7fcdf43cc000, 1658880, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf43cc000, 1343488, 5, 2066, fd:0x00000003, 139264)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf43cc000
+[32m[syscall][0m(mmap) started (0x7fcdf4514000, 311296, 1, 2066, fd:0x00000003, 1482752)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4514000
+[32m[syscall][0m(mmap) started (0x7fcdf4561000, 24576, 3, 2066, fd:0x00000003, 1794048)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4561000
+[32m[syscall][0m(mmap) started (0x7fcdf4567000, 14336, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4567000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7dd0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 160208, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4382000
+[32m[syscall][0m(mmap) started (0x7fcdf4387000, 77824, 5, 2066, fd:0x00000003, 20480)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4387000
+[32m[syscall][0m(mmap) started (0x7fcdf439a000, 49152, 1, 2066, fd:0x00000003, 98304)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf439a000
+[32m[syscall][0m(mmap) started (0x7fcdf43a6000, 16384, 3, 2066, fd:0x00000003, 143360)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf43a6000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7db0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 122904, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4363000
+[32m[syscall][0m(mmap) started (0x7fcdf4365000, 16384, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4365000
+[32m[syscall][0m(mmap) started (0x7fcdf4369000, 94208, 1, 2066, fd:0x00000003, 24576)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4369000
+[32m[syscall][0m(mmap) started (0x7fcdf4380000, 8192, 3, 2066, fd:0x00000003, 114688)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4380000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7d90)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4361000
+[32m[syscall][0m(mmap) started (0x00000000, 2213360, 5, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4144000
+[32m[syscall][0m(mprotect) started (0x7fcdf415f000, 2097152, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf435f000, 8192, 3, 2066, fd:0x00000003, 110592)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf435f000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7d70)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 184760, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4116000
+[32m[syscall][0m(mmap) started (0x7fcdf411b000, 122880, 5, 2066, fd:0x00000003, 20480)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf411b000
+[32m[syscall][0m(mmap) started (0x7fcdf4139000, 36864, 1, 2066, fd:0x00000003, 143360)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4139000
+[32m[syscall][0m(mmap) started (0x7fcdf4142000, 8192, 3, 2066, fd:0x00000003, 180224)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4142000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7d50)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 73744, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4103000
+[32m[syscall][0m(mmap) started (0x7fcdf4105000, 8192, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4105000
+[32m[syscall][0m(mmap) started (0x7fcdf4107000, 53248, 1, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4107000
+[32m[syscall][0m(mmap) started (0x7fcdf4114000, 8192, 3, 2066, fd:0x00000003, 65536)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4114000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7d30)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 596272, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4071000
+[32m[syscall][0m(mprotect) started (0x7fcdf408e000, 425984, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf408e000, 315392, 5, 2066, fd:0x00000003, 118784)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf408e000
+[32m[syscall][0m(mmap) started (0x7fcdf40db000, 106496, 1, 2066, fd:0x00000003, 434176)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf40db000
+[32m[syscall][0m(mmap) started (0x7fcdf40f6000, 53248, 3, 2066, fd:0x00000003, 540672)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf40f6000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7d10)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 3051424, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d88000
+[32m[syscall][0m(mprotect) started (0x7fcdf3e0d000, 2285568, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3e0d000, 1695744, 5, 2066, fd:0x00000003, 544768)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3e0d000
+[32m[syscall][0m(mmap) started (0x7fcdf3fab000, 585728, 1, 2066, fd:0x00000003, 2240512)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3fab000
+[32m[syscall][0m(mmap) started (0x7fcdf403b000, 204800, 3, 2066, fd:0x00000003, 2826240)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf403b000
+[32m[syscall][0m(mmap) started (0x7fcdf406d000, 16288, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf406d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7cf0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 312320, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d3b000
+[32m[syscall][0m(mmap) started (0x7fcdf3d46000, 204800, 5, 2066, fd:0x00000003, 45056)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d46000
+[32m[syscall][0m(mmap) started (0x7fcdf3d78000, 49152, 1, 2066, fd:0x00000003, 249856)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d78000
+[32m[syscall][0m(mmap) started (0x7fcdf3d84000, 16384, 3, 2066, fd:0x00000003, 294912)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d84000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7cd0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d39000
+[32m[syscall][0m(mmap) started (0x00000000, 916064, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c59000
+[32m[syscall][0m(mprotect) started (0x7fcdf3c7d000, 700416, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3c7d000, 397312, 5, 2066, fd:0x00000003, 147456)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c7d000
+[32m[syscall][0m(mmap) started (0x7fcdf3cde000, 299008, 1, 2066, fd:0x00000003, 544768)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3cde000
+[32m[syscall][0m(mmap) started (0x7fcdf3d28000, 69632, 3, 2066, fd:0x00000003, 843776)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3d28000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7cb0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 209400, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c25000
+[32m[syscall][0m(mmap) started (0x7fcdf3c2a000, 118784, 5, 2066, fd:0x00000003, 20480)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c2a000
+[32m[syscall][0m(mmap) started (0x7fcdf3c47000, 57344, 1, 2066, fd:0x00000003, 139264)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c47000
+[32m[syscall][0m(mmap) started (0x7fcdf3c55000, 12288, 3, 2066, fd:0x00000003, 192512)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c55000
+[32m[syscall][0m(mmap) started (0x7fcdf3c58000, 504, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c58000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7c90)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 20648, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c1f000
+[32m[syscall][0m(mmap) started (0x7fcdf3c21000, 4096, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c21000
+[32m[syscall][0m(mmap) started (0x7fcdf3c22000, 4096, 1, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c22000
+[32m[syscall][0m(mmap) started (0x7fcdf3c23000, 8192, 3, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c23000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7c70)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 342664, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bcb000
+[32m[syscall][0m(mprotect) started (0x7fcdf3bd9000, 266240, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3bd9000, 204800, 5, 2066, fd:0x00000003, 57344)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bd9000
+[32m[syscall][0m(mmap) started (0x7fcdf3c0b000, 57344, 1, 2066, fd:0x00000003, 262144)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c0b000
+[32m[syscall][0m(mmap) started (0x7fcdf3c1a000, 12288, 3, 2066, fd:0x00000003, 319488)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c1a000
+[32m[syscall][0m(mmap) started (0x7fcdf3c1d000, 6792, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3c1d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7c50)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 65960, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bba000
+[32m[syscall][0m(mprotect) started (0x7fcdf3bbd000, 49152, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3bbd000, 32768, 5, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bbd000
+[32m[syscall][0m(mmap) started (0x7fcdf3bc5000, 12288, 1, 2066, fd:0x00000003, 45056)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bc5000
+[32m[syscall][0m(mmap) started (0x7fcdf3bc9000, 8192, 3, 2066, fd:0x00000003, 57344)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bc9000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7c10)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bb8000
+[32m[syscall][0m(mmap) started (0x00000000, 1587464, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3a34000
+[32m[syscall][0m(mmap) started (0x7fcdf3a45000, 225280, 5, 2066, fd:0x00000003, 69632)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3a45000
+[32m[syscall][0m(mmap) started (0x7fcdf3a7c000, 1273856, 1, 2066, fd:0x00000003, 294912)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3a7c000
+[32m[syscall][0m(mmap) started (0x7fcdf3bb3000, 20480, 3, 2066, fd:0x00000003, 1564672)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3bb3000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7bf0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 1751400, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3888000
+[32m[syscall][0m(mmap) started (0x7fcdf38b8000, 1064960, 5, 2066, fd:0x00000003, 196608)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf38b8000
+[32m[syscall][0m(mmap) started (0x7fcdf39bc000, 417792, 1, 2066, fd:0x00000003, 1261568)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf39bc000
+[32m[syscall][0m(mmap) started (0x7fcdf3a22000, 69632, 3, 2066, fd:0x00000003, 1675264)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3a22000
+[32m[syscall][0m(mmap) started (0x7fcdf3a33000, 2408, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3a33000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7bd0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 231192, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf384f000
+[32m[syscall][0m(mprotect) started (0x7fcdf3857000, 192512, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3857000, 65536, 5, 2066, fd:0x00000003, 32768)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3857000
+[32m[syscall][0m(mmap) started (0x7fcdf3867000, 122880, 1, 2066, fd:0x00000003, 98304)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3867000
+[32m[syscall][0m(mmap) started (0x7fcdf3886000, 8192, 3, 2066, fd:0x00000003, 221184)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3886000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7bb0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 226472, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3817000
+[32m[syscall][0m(mmap) started (0x7fcdf3820000, 118784, 5, 2066, fd:0x00000003, 36864)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3820000
+[32m[syscall][0m(mmap) started (0x7fcdf383d000, 61440, 1, 2066, fd:0x00000003, 155648)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf383d000
+[32m[syscall][0m(mmap) started (0x7fcdf384c000, 12288, 3, 2066, fd:0x00000003, 212992)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf384c000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7b90)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 535424, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3794000
+[32m[syscall][0m(mprotect) started (0x7fcdf379f000, 483328, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf379f000, 385024, 5, 2066, fd:0x00000003, 45056)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf379f000
+[32m[syscall][0m(mmap) started (0x7fcdf37fd000, 94208, 1, 2066, fd:0x00000003, 430080)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf37fd000
+[32m[syscall][0m(mmap) started (0x7fcdf3815000, 8192, 3, 2066, fd:0x00000003, 524288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3815000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7b70)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 1171400, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3676000
+[32m[syscall][0m(mmap) started (0x7fcdf3682000, 843776, 5, 2066, fd:0x00000003, 49152)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3682000
+[32m[syscall][0m(mmap) started (0x7fcdf3750000, 249856, 1, 2066, fd:0x00000003, 892928)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3750000
+[32m[syscall][0m(mmap) started (0x7fcdf378d000, 28672, 3, 2066, fd:0x00000003, 1138688)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf378d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7b50)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 16656, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3671000
+[32m[syscall][0m(mmap) started (0x7fcdf3672000, 4096, 5, 2066, fd:0x00000003, 4096)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3672000
+[32m[syscall][0m(mmap) started (0x7fcdf3673000, 4096, 1, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3673000
+[32m[syscall][0m(mmap) started (0x7fcdf3674000, 8192, 3, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3674000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf366f000
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7b30)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 58760, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3660000
+[32m[syscall][0m(mmap) started (0x7fcdf3663000, 28672, 5, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3663000
+[32m[syscall][0m(mmap) started (0x7fcdf366a000, 12288, 1, 2066, fd:0x00000003, 40960)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf366a000
+[32m[syscall][0m(mmap) started (0x7fcdf366d000, 8192, 3, 2066, fd:0x00000003, 49152)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf366d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7b10)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 24592, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3659000
+[32m[syscall][0m(mmap) started (0x7fcdf365b000, 8192, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf365b000
+[32m[syscall][0m(mmap) started (0x7fcdf365d000, 4096, 1, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf365d000
+[32m[syscall][0m(mmap) started (0x7fcdf365e000, 8192, 3, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf365e000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7af0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 105088, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf363f000
+[32m[syscall][0m(mprotect) started (0x7fcdf3643000, 73728, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf3643000, 53248, 5, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3643000
+[32m[syscall][0m(mmap) started (0x7fcdf3650000, 16384, 1, 2066, fd:0x00000003, 69632)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3650000
+[32m[syscall][0m(mmap) started (0x7fcdf3655000, 8192, 3, 2066, fd:0x00000003, 86016)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3655000
+[32m[syscall][0m(mmap) started (0x7fcdf3657000, 6784, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3657000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7ad0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 115688, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3622000
+[32m[syscall][0m(mmap) started (0x7fcdf3625000, 73728, 5, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3625000
+[32m[syscall][0m(mmap) started (0x7fcdf3637000, 24576, 1, 2066, fd:0x00000003, 86016)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3637000
+[32m[syscall][0m(mmap) started (0x7fcdf363d000, 8192, 3, 2066, fd:0x00000003, 106496)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf363d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7ab0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 1240320, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf34f3000
+[32m[syscall][0m(mmap) started (0x7fcdf351e000, 606208, 5, 2066, fd:0x00000003, 176128)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf351e000
+[32m[syscall][0m(mmap) started (0x7fcdf35b2000, 372736, 1, 2066, fd:0x00000003, 782336)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf35b2000
+[32m[syscall][0m(mmap) started (0x7fcdf360d000, 86016, 3, 2066, fd:0x00000003, 1150976)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf360d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7a90)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf34f1000
+[32m[syscall][0m(mmap) started (0x00000000, 2171592, 5, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32de000
+[32m[syscall][0m(mprotect) started (0x7fcdf32ef000, 2097152, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf34ef000, 8192, 3, 2066, fd:0x00000003, 69632)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf34ef000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7a70)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 139872, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32bb000
+[32m[syscall][0m(mprotect) started (0x7fcdf32bf000, 118784, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf32bf000, 77824, 5, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32bf000
+[32m[syscall][0m(mmap) started (0x7fcdf32d2000, 36864, 1, 2066, fd:0x00000003, 94208)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32d2000
+[32m[syscall][0m(mmap) started (0x7fcdf32dc000, 8192, 3, 2066, fd:0x00000003, 131072)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32dc000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/x86_64-', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7a50)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 38504, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32b1000
+[32m[syscall][0m(mmap) started (0x7fcdf32b3000, 20480, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32b3000
+[32m[syscall][0m(mmap) started (0x7fcdf32b8000, 4096, 1, 2066, fd:0x00000003, 28672)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32b8000
+[32m[syscall][0m(mmap) started (0x7fcdf32b9000, 8192, 3, 2066, fd:0x00000003, 28672)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32b9000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32af000
+[32m[syscall][0m(mmap) started (0x00000000, 8192, 3, 34, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32ad000
+[32m[syscall][0m(arch_prctl) started (...)
+[32m[syscall][0m(arch_prctl) ended-> (...) = (0x00000000)
+[32m[syscall][0m(mprotect) started (0x7fcdf4561000, 16384, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf32b9000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf32dc000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf34ef000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf4586000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3674000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf360d000, 45056, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3655000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf363d000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf365e000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf366d000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf378d000, 8192, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3815000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf384c000, 8192, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3886000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3bb3000, 16384, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf4380000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3a22000, 65536, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3bc9000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3c1a000, 8192, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3c23000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3c55000, 8192, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3d28000, 57344, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3d84000, 8192, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf403b000, 196608, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf40f6000, 36864, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf4114000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf47a8000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf4142000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf435f000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf43a6000, 12288, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf4836000, 16384, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x564726c42000, 16384, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf489a000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(munmap) started (0x7fcdf483d000, 220582)
+[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(set_tid_address) started (...)
+[32m[syscall][0m(set_tid_address) ended-> (...) = (0x0000673f)
+[32m[syscall][0m(set_robust_list) started (...)
+[32m[syscall][0m(set_robust_list) ended-> (...) = (0x00000000)
+[32m[syscall][0m(rt_sigaction) started (SIGRTMIN, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x7fff5a5a8a10, 0x00000000, 8) = 0
+[32m[syscall][0m(rt_sigaction) started (, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x7fff5a5a8a10, 0x00000000, 8) = 0
+[32m[syscall][0m(rt_sigprocmask) started (1, 0x7fff5a5a8b88, 0x00000000)
+[32m[syscall][0m(rt_sigprocmask) ended-> (.., .., 0x00000000) = 0
+[32m[syscall][0m(prlimit64) started (...)
+[32m[syscall][0m(prlimit64) ended-> (...) = (0x00000000)
+[32m[syscall][0m(brk) started (0x00000000)
+[32m[syscall][0m(brk) ended->  = 0x564726f3b000
+[32m[syscall][0m(brk) started (0x564726f5c000)
+[32m[syscall][0m(brk) ended->  = 0x564726f5c000
+[32m[syscall][0m(getrandom) started (...)
+[32m[syscall][0m(getrandom) ended-> (...) = (0x00000001)
+[32m[syscall][0m(stat) started ('/etc/gnutls/defa'0x7fff5a5a8b60)
+[32m[syscall][0m(stat) ended-> (.., , 0x7fff5a5a8b60)) = -2
+[32m[syscall][0m(pipe) started (0x7fff5a5a8bb0)
+[32m[syscall][0m(pipe) ended->  = 0
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(close) started (fd:0x00000004)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(rt_sigaction) started (SIGPIPE, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x7fff5a5a88a0, 0x7fff5a5a8940, 8) = 0
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(brk) started (0x564726f7f000)
+[32m[syscall][0m(brk) ended->  = 0x564726f7f000
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/usr/lib/ssl/ope', 0, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a8750)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, '##OpenSSLexam', 4096) = 4096
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'F8Strings).#MA', 4096) = 4096
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'icConstraints=CA', 4096) = 2926
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'icConstraints=CA', 4096) = 0
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(access) started ('/etc/gcrypt/fips', 0)
+[32m[syscall][0m(access) ended->  = -2
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/proc/sys/crypto', 0, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a8700)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(read) started (fd:0x00000003, .., 1024)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, '0V', 1024) = 2
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/gcrypt/hwf.', 0, 0)
+[32m[syscall][0m(openat) ended->  = -2
+[32m[syscall][0m(geteuid) started (...)
+[32m[syscall][0m(geteuid) ended-> (...) = (0x000003e8)
+[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(connect) ended-> (...) = (0xfffffffffffffffe)
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(connect) ended-> (...) = (0xfffffffffffffffe)
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/nsswitch.co', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a7560)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, '#/etc/nsswitch.', 4096) = 556
+[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, '#/etc/nsswitch.', 4096) = 0
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/ld.so.cache', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a6d10)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 220582, 1, 2, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf483d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a6d70)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 43168, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32a2000
+[32m[syscall][0m(mmap) started (0x7fcdf32a4000, 20480, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32a4000
+[32m[syscall][0m(mmap) started (0x7fcdf32a9000, 8192, 1, 2066, fd:0x00000003, 28672)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32a9000
+[32m[syscall][0m(mmap) started (0x7fcdf32ab000, 8192, 3, 2066, fd:0x00000003, 32768)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32ab000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf32ab000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(munmap) started (0x7fcdf483d000, 220582)
+[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/ld.so.cache', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a6c00)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 220582, 1, 2, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf483d000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a6c60)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 50568, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3295000
+[32m[syscall][0m(mmap) started (0x7fcdf3297000, 28672, 5, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3297000
+[32m[syscall][0m(mmap) started (0x7fcdf329e000, 8192, 1, 2066, fd:0x00000003, 36864)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf329e000
+[32m[syscall][0m(mmap) started (0x7fcdf32a0000, 8192, 3, 2066, fd:0x00000003, 40960)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf32a0000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a65d0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 100952, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf327c000
+[32m[syscall][0m(mmap) started (0x7fcdf3280000, 49152, 5, 2066, fd:0x00000003, 16384)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3280000
+[32m[syscall][0m(mmap) started (0x7fcdf328c000, 20480, 1, 2066, fd:0x00000003, 65536)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf328c000
+[32m[syscall][0m(mmap) started (0x7fcdf3291000, 8192, 3, 2066, fd:0x00000003, 81920)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3291000
+[32m[syscall][0m(mmap) started (0x7fcdf3293000, 6744, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3293000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a65b0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 83768, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3267000
+[32m[syscall][0m(mprotect) started (0x7fcdf326a000, 40960, 0)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mmap) started (0x7fcdf326a000, 28672, 5, 2066, fd:0x00000003, 12288)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf326a000
+[32m[syscall][0m(mmap) started (0x7fcdf3271000, 8192, 1, 2066, fd:0x00000003, 40960)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3271000
+[32m[syscall][0m(mmap) started (0x7fcdf3274000, 8192, 3, 2066, fd:0x00000003, 49152)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3274000
+[32m[syscall][0m(mmap) started (0x7fcdf3276000, 22328, 3, 50, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf3276000
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3274000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf3291000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(mprotect) started (0x7fcdf32a0000, 4096, 1)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(munmap) started (0x7fcdf483d000, 220582)
+[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/passwd', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(lseek) started (fd:0x00000003, 0, 1)
+[32m[syscall][0m(lseek) ended->  = 0
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a74f0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 2467, 1, 1, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4872000
+[32m[syscall][0m(lseek) started (fd:0x00000003, 2467, 0)
+[32m[syscall][0m(lseek) ended->  = 2467
+[32m[syscall][0m(munmap) started (0x7fcdf4872000, 2467)
+[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/home/yuzo/.curl', 0, 0)
+[32m[syscall][0m(openat) ended->  = -2
+[32m[syscall][0m(ioctl) started (fd:0x00000001, 21505, , 0x7fff5a5a86b0)
+[32m[syscall][0m(ioctl) ended->  = -25
+[32m[syscall][0m(brk) started (0x564726fb0000)
+[32m[syscall][0m(brk) ended->  = 0x564726fb0000
+[32m[syscall][0m(geteuid) started (...)
+[32m[syscall][0m(geteuid) ended-> (...) = (0x000003e8)
+[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/passwd', 524288, 0)
+[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(lseek) started (fd:0x00000003, 0, 1)
+[32m[syscall][0m(lseek) ended->  = 0
+[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fff5a5a83b0)
+[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 2467, 1, 1, fd:0x00000003, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf4872000
+[32m[syscall][0m(lseek) started (fd:0x00000003, 2467, 0)
+[32m[syscall][0m(lseek) ended->  = 2467
+[32m[syscall][0m(munmap) started (0x7fcdf4872000, 2467)
+[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(ioctl) started (fd:0x00000000, 21523, , 0x7fff5a5a8710)
+[32m[syscall][0m(ioctl) ended->  = 0
+[32m[syscall][0m(rt_sigaction) started (SIGPIPE, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x00000000, 0x7fff5a5a8500, 8) = 0
+[32m[syscall][0m(rt_sigaction) started (SIGPIPE, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x7fff5a5a8460, 0x00000000, 8) = 0
+[32m[syscall][0m(rt_sigaction) started (SIGPIPE, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x00000000, 0x7fff5a5a83e0, 8) = 0
+[32m[syscall][0m(rt_sigaction) started (SIGPIPE, act, oldact, sigsetsize)
+[32m[syscall][0m(rt_sigaction) ended-> (.., 0x7fff5a5a8340, 0x00000000, 8) = 0
+[32m[syscall][0m(mmap) started (0x00000000, 8392704, 0, 131106, fd:0xffffffff, 0)
+[32m[syscall][0m(mmap) ended->  = 0x7fcdf2a66000
+[32m[syscall][0m(mprotect) started (0x7fcdf2a67000, 8388608, 3)
+[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(clone) started (...)
+[32m[syscall][0m(clone) ended-> (...) = (0x00006740)
+[33m[pid:26432][0m[32m[syscall][0m(set_robust_list) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(set_robust_list) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x00000000, 134217728, 0, 16418, fd:0xffffffff, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdeaa66000
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) started (0x7fcdeaa66000, 22650880)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '%', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) started (0x7fcdf0000000, 44457984)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) started (0x7fcdec000000, 135168, 3)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'T', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'o', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 't', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'a', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'l', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(connect) ended-> (...) = (0xfffffffffffffffe)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '%', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(connect) ended-> (...) = (0xfffffffffffffffe)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'R', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'c', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(stat) started ('/etc/resolv.conf'0x7fcdf3265340)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(stat) ended-> (.., , 0x7fcdf3265340)) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'i', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/host.conf', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'v', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3264d30)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, 'multion', 4096) = 9
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, 'multion', 4096) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '%', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/resolv.conf', 524288, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'X', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'f', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3264f40)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'r', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '#GeneratedbyN', 4096) = 53
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '#GeneratedbyN', 4096) = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(uname) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(uname) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'A', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/hosts', 524288, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'v', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[33m[pid:26432][0m[32m[syscall][0m(lseek) started (fd:0x00000003, 0, 1)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(lseek) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3265170)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'r', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '127.0.0.1localh', 4096) = 188
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'a', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(lseek) started (fd:0x00000003, 0, 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'g', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(lseek) ended->  = 188
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '127.0.0.1localh', 4096) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'S', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'p', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/ld.so.cache', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf32649e0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x00000000, 220582, 1, 2, fd:0x00000003, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf483d000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'T', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3264a40)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'i', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x00000000, 2109456, 5, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'm', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf2862000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) started (0x7fcdf2865000, 2093056, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x7fcdf2a64000, 8192, 3, 2066, fd:0x00000003, 8192)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf2a64000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'T', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'i', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) started (0x7fcdf2a64000, 4096, 1)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'm', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) started (0x7fcdf483d000, 220582)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/ld.so.cache', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf32649f0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x00000000, 220582, 1, 2, fd:0x00000003, 0)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf483d000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'T', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/lib/x86_64-linu', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'i', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 832)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, 'ELF', 832) = 832
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'm', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3264a50)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x00000000, 28896, 1, 2050, fd:0x00000003, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf285a000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x7fcdf285b000, 16384, 5, 2066, fd:0x00000003, 4096)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'C', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'u', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf285b000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x7fcdf285f000, 4096, 1, 2066, fd:0x00000003, 20480)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'r', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf285f000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mmap) started (0x7fcdf2860000, 8192, 3, 2066, fd:0x00000003, 20480)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'r', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mmap) ended->  = 0x7fcdf2860000
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'n', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 't', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) started (0x7fcdf2860000, 4096, 1)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(mprotect) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) started (0x7fcdf483d000, 220582)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(munmap) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(connect) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(poll) started (fds:0x7fcdf3263dc8, 1, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(poll) ended->  = 1
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(sendmmsg) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(sendmmsg) ended-> (...) = (0x00000002)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(poll) started (fds:0x7fcdf3263dc8, 1, 5000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'D', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'l', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'o', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'a', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'U', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'p', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'l', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'o', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'a', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'T', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'o', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 't', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'a', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'l', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'S', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'p', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'n', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 't', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(poll) ended->  = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(ioctl) started (fd:0x00000003, 21531, , 0x7fcdf3263d8c)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(ioctl) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(recvfrom) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvfrom) ended-> (...) = (0x0000002c)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'L', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(poll) started (fds:0x7fcdf3263dc8, 1, 4999)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'f', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 't', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'S', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'p', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'e', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, 'd', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(poll) ended->  = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(ioctl) started (fd:0x00000003, 21531, , 0x7fcdf32653c4)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(ioctl) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvfrom) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(recvfrom) ended-> (...) = (0x00000038)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) started (dir(0xffffff9c), '/etc/gai.conf', 524288, 0)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(openat) ended->  = 3
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3265580)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(fstat) started (fd:0x00000003, 0x7fcdf3265380)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(fstat) ended-> (.., ..) = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '#Configuration', 4096) = 2584
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(read) started (fd:0x00000003, .., 4096)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(read) ended-> (fd:0x00000003, '#Configuration', 4096) = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(futex) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(futex) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(bind) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(bind) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(getsockname) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(getsockname) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(sendto) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(sendto) ended-> (...) = (0x00000014)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) ended-> (...) = (0x000000a8)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) ended-> (...) = (0x00000090)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(recvmsg) ended-> (...) = (0x00000014)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[33m[pid:26432][0m[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(connect) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(getsockname) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(getsockname) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(socket) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(socket) ended-> (...) = (0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(connect) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(connect) ended-> (...) = (0xffffffffffffff9b)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) started (fd:0x00000003)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '0', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(close) ended->  = 0
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(madvise) started (...)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[33m[pid:26432][0m[32m[syscall][0m(madvise) ended-> (...) = (0x00000000)
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
+[33m[pid:26432][0m[32m[syscall][0m(exit) started (...)
+[32m[syscall][0m(write) ended-> (fd:0x00000002, '', 1) = 1
+[32m[syscall][0m(write) started (fd:0x00000002, .., 1)
