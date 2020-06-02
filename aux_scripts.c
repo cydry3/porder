@@ -44,7 +44,7 @@ void prepare_conv_table(pid_t child_pid)
 	char pid_str[8];
 	sprintf(pid_str, "%d", child_pid);
 
-	char *args[] = {"./gen_asm_table.py", pid_str, NULL};
+	char *args[] = { bin_rootpath_with("gen_asm_table.py"), pid_str, NULL};
 
 	run_aux_script_on_subprocess(args);
 }
@@ -57,7 +57,7 @@ int spawn_post_printer(int pipefd[])
 		exit(1);
 	}
 
-	char *args[] = {"./conv_addr2asm.py", NULL};
+	char *args[] = { bin_rootpath_with("conv_addr2asm.py"), NULL};
 
 	pid_t script_pid = fork();
 	if ((script_pid == -1))

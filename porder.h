@@ -133,4 +133,7 @@ void init_child_context(pid_t pid, struct child_context *c_ctx);
 void set_verbose_ctx_by_mode(struct child_context *ctx, int mode);
 
 // util.c
+#define MAX_PORDER_PATHLEN 256
+#define PORDER_NAMELEN 6
 void retry_interval_nano();
+char *bin_rootpath_with(const char *filename);
