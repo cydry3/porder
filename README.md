@@ -13,3 +13,6 @@
 - ` -s print system calls`
 - ` -i print instructions`
 - ` -v print verbosely`
+
+#### example
+![porder-example](https://user-images.githubusercontent.com/50176101/83503611-4dac3000-a4fe-11ea-9a92-d28c4aa62e17.gif)
