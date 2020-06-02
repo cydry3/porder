@@ -9,7 +9,7 @@ import re
 
 # Convertion table object
 class Addr2Asm:
-    src_file = "table_addr2asm"
+    src_file = "/tmp/table_addr2asm"
     regex_pat = []
     table_file = []
 

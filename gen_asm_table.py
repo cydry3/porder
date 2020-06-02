@@ -11,7 +11,7 @@ import os
 import subprocess
 
 def conv_table(pid):
-    desc_file = 'table_addr2asm'
+    desc_file = '/tmp/table_addr2asm'
     tmp_tables = {}
     obj_addr_pairs= read_child_proc_file(pid)
     for obj_path, base_addr in obj_addr_pairs.items():
