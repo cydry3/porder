@@ -311,9 +311,8 @@ int parent_main(pid_t child_pid, int mode)
 int main(int argc, char *argv[])
 {
 	char *cmd[10];
-	int mode = 1; // default
+	int mode = PORDER_SYSCALL_MODE; // default
 	args_parse(&mode, cmd, argv, argc);
-	printf("mode %d\n", mode);
 	printf("cmd  %s\n", cmd[0]);
 
 	pid_t pid = fork();

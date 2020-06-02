@@ -103,6 +103,12 @@ int is_trace_status_on_syscall(trace_step_status_t *ts_status);
 void init_child_context (pid_t pid, struct child_context *c_ctx);
 
 // args.c
+#define PORDER_INST_MODE    0x00
+#define PORDER_SYSCALL_MODE 0x01
+#define PORDER_DEBUG_MODE   0x02
+#define PORDER_MODE_MASK    0x0f
+#define PORDER_VERBOSE_MODE (1u<<4)
+
 void args_parse(int *mode, char **dest, char **argv, size_t argc);
 int is_syscall_mode(int mode);
 int is_singlestep_mode(int mode);
