@@ -15,6 +15,7 @@
 #include <search.h>
 #include <ctype.h>
 #include <time.h>
+#include <asm/prctl.h>
 
 #define _GNU_SOURCE
 #include <sys/uio.h>

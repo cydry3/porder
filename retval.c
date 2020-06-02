@@ -463,7 +463,6 @@ void print_syscall_pipe(struct child_context *ctx)
 	}
 }
 
-
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -475,6 +474,34 @@ void print_syscall_execve(struct child_context *ctx)
 		print_sep();
 		print_syscall_argv_string(ctx->pid, (char **)ctx->regs->rdx);
 		printf(")");
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
+/* 158 */
+void as_subfunction(long long unsigned int reg)
+{
+	switch(reg) {
+	case 0x1001: printf("ARCH_SET_GS"); break;
+	case 0x1002: printf("ARCH_SET_FS"); break;
+	case 0x1003: printf("ARCH_GET_FS"); break;
+	case 0x1004: printf("ARCH_GET_GS"); break;
+	case 0x1011: printf("ARCH_GET_CPUID"); break;
+	case 0x1012: printf("ARCH_SET_CPUID"); break;
+	case 0x2001: printf("ARCH_MAP_VDSO_X32"); break;
+	case 0x2002: printf("ARCH_MAP_VDSO_32"); break;
+	case 0x2003: printf("ARCH_MAP_VDSO_64"); break;
+	}
+}
+
+void print_syscall_arch_prctl(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		as_subfunction(ctx->regs->rdi);
+		paren_close();
 	}
 	if (ctx->end) {
 		print_syscall_retval(ctx);
@@ -522,6 +549,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_access /* 21 */: print_syscall_access(ctx); break;
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
+		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
