@@ -508,6 +508,19 @@ void print_syscall_arch_prctl(struct child_context *ctx)
 	}
 }
 
+/* 218  */
+void print_syscall_set_tid_address(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		ptr_as(ctx->regs->rdi);
+		paren_close();
+	}
+	if (ctx->end) {
+		printf("tid:%d", (int)ctx->regs->rax);
+	}
+}
+
 /* 257 */
 void print_syscall_openat(struct child_context *ctx)
 {
@@ -550,6 +563,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
+		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
