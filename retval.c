@@ -480,6 +480,21 @@ void print_syscall_execve(struct child_context *ctx)
 	}
 }
 
+/* 137 */
+void printf_syscall_statfs(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		print_syscall_arg_string(ctx->pid, ctx->regs->rdi);
+		arg_sep();
+		ptr_as(ctx->regs->rsi);
+		paren_close();
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 158 */
 void as_subfunction(long long unsigned int reg)
 {
@@ -620,6 +635,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_access /* 21 */: print_syscall_access(ctx); break;
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
+		case __NR_statfs /* 137 */: printf_syscall_statfs(ctx); break;
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
 		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
