@@ -535,6 +535,23 @@ void print_syscall_openat(struct child_context *ctx)
 	}
 }
 
+/* 273 */
+void print_syscall_set_robust_list(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		ptr_as(ctx->regs->rdi);
+		arg_sep();
+		int_as(ctx->regs->rsi);
+		paren_close();
+	}
+	if (ctx->end) {
+		printf(" = %d", (int)ctx->regs->rax);
+		if ((int)ctx->regs->rax != 0)
+			printf("(err)");
+	}
+}
+
 void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
@@ -565,6 +582,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
 		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
+		case __NR_set_robust_list /* 273 */: print_syscall_set_robust_list(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
 }
