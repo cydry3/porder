@@ -551,6 +551,17 @@ void print_syscall_set_tid_address(struct child_context *ctx)
 	}
 }
 
+/* 231 */
+void print_syscall_exit_group(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		int_as(ctx->regs->rdi);
+		paren_close();
+	}
+	// This systemcall does not return.
+}
+
 /* 257 */
 void print_syscall_openat(struct child_context *ctx)
 {
@@ -654,6 +665,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
 		case __NR_getdents64 /* 217 */: print_syscall_getdents64(ctx); break;
 		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
+		case __NR_exit_group /* 231 */: print_syscall_exit_group(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		case __NR_set_robust_list /* 273 */: print_syscall_set_robust_list(ctx); break;
 		case __NR_prlimit64 /* 302 */: print_syscall_prlimit64(ctx); break;
