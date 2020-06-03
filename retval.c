@@ -552,6 +552,47 @@ void print_syscall_set_robust_list(struct child_context *ctx)
 	}
 }
 
+/* 302 */
+void as_resource(long long unsigned int reg)
+{
+	switch(reg){
+	case 0	      : printf("RLIMIT_CPU"); break;
+	case 1	      : printf("RLIMIT_FSIZE"); break;
+	case 2	      : printf("RLIMIT_DATA"); break;
+	case 3	      : printf("RLIMIT_STACK"); break;
+	case 4	      : printf("RLIMIT_CORE"); break;
+	case 5	      : printf("RLIMIT_RSS"); break;
+	case 6	      : printf("RLIMIT_NPROC"); break;
+	case 7	      : printf("RLIMIT_NOFILE"); break;
+	case 8	      : printf("RLIMIT_MEMLOCK"); break;
+	case 9	      : printf("RLIMIT_AS"); break;
+	case 10	      : printf("RLIMIT_LOCKS"); break;
+	case 11	      : printf("RLIMIT_SIGPENDING"); break;
+	case 12	      : printf("RLIMIT_MSGQUEUE"); break;
+	case 13		  : printf("RLIMIT_NICE"); break;
+	case 14	      : printf("RLIMIT_RTPRIO"); break;
+	case 15	      : printf("RLIMIT_RTTIME"); break;
+	case 16       : printf("RLIM_NLIMITS"); break;
+	case (~0UL)   : printf("RLIM_INFINITY"); break;
+	}
+}
+
+void print_syscall_prlimit64(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		printf("pid:%d", (int)ctx->regs->rdi);
+		arg_sep();
+		as_resource(ctx->regs->rsi);
+		arg_sep();
+		ptr_as(ctx->regs->rdx);
+		paren_close();
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
@@ -583,6 +624,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		case __NR_set_robust_list /* 273 */: print_syscall_set_robust_list(ctx); break;
+		case __NR_prlimit64 /* 302 */: print_syscall_prlimit64(ctx); break;
 		default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
 }
