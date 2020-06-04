@@ -463,6 +463,21 @@ void print_syscall_pipe(struct child_context *ctx)
 	}
 }
 
+/* 35 */
+void print_syscall_nanosleep(struct child_context *ctx)
+{
+	if (ctx->start) {
+		paren_open();
+		ptr_as(ctx->regs->rdi);
+		arg_sep();
+		ptr_as(ctx->regs->rsi);
+		paren_close();
+	}
+	if (ctx->end) {
+		print_syscall_retval(ctx);
+	}
+}
+
 /* 59 */
 void print_syscall_execve(struct child_context *ctx)
 {
@@ -660,6 +675,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_writev /* 20 */: print_syscall_writev(ctx); break;
 		case __NR_access /* 21 */: print_syscall_access(ctx); break;
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
+		case __NR_nanosleep /* 35 */: print_syscall_nanosleep(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 		case __NR_statfs /* 137 */: printf_syscall_statfs(ctx); break;
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
