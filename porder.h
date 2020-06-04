@@ -86,7 +86,7 @@ void print_signal_string(int signum);
 
 // aux_scripts.c
 void prepare_conv_table(pid_t child_pid);
-int spawn_post_printer();
+int spawn_post_printer(int pipefd[]);
 
 
 // status.c
@@ -135,5 +135,5 @@ void set_verbose_ctx_by_mode(struct child_context *ctx, int mode);
 // util.c
 #define MAX_PORDER_PATHLEN 256
 #define PORDER_NAMELEN 6
-void retry_interval_nano();
+void retry_interval_nano(void);
 char *bin_rootpath_with(const char *filename);

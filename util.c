@@ -1,6 +1,6 @@
 #include "porder.h"
 
-void retry_interval_nano()
+void retry_interval_nano(void)
 {
 	static struct timespec interval = {
 		.tv_sec = 0,
