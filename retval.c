@@ -674,6 +674,20 @@ void print_syscall_getrandom(struct child_context *ctx)
   }
 }
 
+void print_syscall_getuid(struct child_context *ctx)
+{
+  if (ctx->start) {
+    paren_open();
+    printf("...");
+    paren_close();
+  }
+  if (ctx->end) {
+    printf(" = uid:%d", (int)ctx->regs->rax);
+    if (ctx->regs->rax == -1)
+      printf("(err)");
+  }
+}
+
 void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
@@ -702,7 +716,9 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
 		case __NR_nanosleep /* 35 */: print_syscall_nanosleep(ctx); break;
 		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
-		case __NR_statfs /* 137 */: printf_syscall_statfs(ctx); break;
+	        case __NR_getuid /* 102 */: print_syscall_getuid(ctx); break;
+	        case __NR_geteuid /* 107 */: print_syscall_getuid(ctx); break;
+                case __NR_statfs /* 137 */: printf_syscall_statfs(ctx); break;
 		case __NR_arch_prctl /* 158 */: print_syscall_arch_prctl(ctx); break;
 		case __NR_getdents64 /* 217 */: print_syscall_getdents64(ctx); break;
 		case __NR_set_tid_address /* 218 */: print_syscall_set_tid_address(ctx); break;
