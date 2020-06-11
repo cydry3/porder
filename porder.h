@@ -17,6 +17,8 @@
 #include <time.h>
 #include <asm/prctl.h>
 #include <sys/random.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 #define _GNU_SOURCE
 #include <sys/uio.h>

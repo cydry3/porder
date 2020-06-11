@@ -495,6 +495,71 @@ void print_syscall_execve(struct child_context *ctx)
 	}
 }
 
+void as_domain(long long unsigned int reg)
+{
+  switch (reg) {
+  case AF_UNIX: printf("AF_UNIX"); break; /* including AF_LOCAL */
+  case AF_INET: printf("AF_INET"); break;
+  case AF_INET6: printf("AF_INET6"); break;
+  case AF_IPX: printf("AF_IPX"); break;
+  case AF_NETLINK: printf("AF_NETLINK"); break;
+  case AF_X25: printf("AF_X25"); break;
+  case AF_AX25: printf("AF_AX25"); break;
+  case AF_ATMPVC: printf("AF_ATMPVC"); break;
+  case AF_APPLETALK: printf("AF_APPLETALK"); break;
+  case AF_PACKET: printf("AF_PACKET"); break;
+  case AF_ALG: printf("AF_ALG"); break;
+  default: break;
+  }
+}
+
+void as_socket_type(long long unsigned int reg)
+{
+  if ((reg & SOCK_STREAM) > 0)
+    printf("SOCK_STREAM");
+  else if ((reg & SOCK_DGRAM) > 0)
+    printf("SOCK_DVGRAM");
+  else if ((reg & SOCK_SEQPACKET) > 0)
+    printf("SOCK_SEQPACKET");
+  else if ((reg &  SOCK_RAW) > 0)
+    printf("SOCK_RAW");
+  else if ((reg & SOCK_RDM) > 0)
+    printf("RDM");
+  else if ((reg & SOCK_SEQPACKET) > 0)
+    printf("SOCK_SEQPACKET");
+  else if ((reg & SOCK_DCCP) > 0)
+    printf("SOCK_DCCP");
+  else if ((reg & SOCK_PACKET) > 0)
+    printf("SOCK_PACKET");
+  else
+    printf("%lld", reg);
+}
+
+void as_proto_name(long long unsigned int reg)
+{
+  struct protoent *pe;
+  pe = getprotobynumber(reg);
+  if (pe == NULL)
+    return;
+  printf("%s", pe->p_name);
+}
+
+void print_syscall_socket(struct child_context *ctx)
+{
+  if (ctx->start) {
+    paren_open();
+    as_domain(ctx->regs->rdi);
+    arg_sep();
+    as_socket_type(ctx->regs->rsi);
+    arg_sep();
+    as_proto_name(ctx->regs->rdx);
+    paren_close();
+  }
+  if (ctx->end) {
+    print_syscall_retval(ctx);
+  }
+}
+
 /* 137 */
 void printf_syscall_statfs(struct child_context *ctx)
 {
@@ -613,7 +678,7 @@ void as_resource(long long unsigned int reg)
 {
 	switch(reg){
 	case 0	      : printf("RLIMIT_CPU"); break;
-	case 1	      : printf("RLIMIT_FSIZE"); break;
+	case 1	      : printf("RLIMIT_FSZE"); break;
 	case 2	      : printf("RLIMIT_DATA"); break;
 	case 3	      : printf("RLIMIT_STACK"); break;
 	case 4	      : printf("RLIMIT_CORE"); break;
@@ -714,7 +779,8 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_access /* 21 */: print_syscall_access(ctx); break;
 		case __NR_pipe /* 22 */: print_syscall_pipe(ctx); break;
 		case __NR_nanosleep /* 35 */: print_syscall_nanosleep(ctx); break;
-		case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
+	        case __NR_socket /* 41 */: print_syscall_socket(ctx); break;
+	        case __NR_execve /* 59 */: print_syscall_execve(ctx); break;
 	        case __NR_getuid /* 102 */: print_syscall_getuid(ctx); break;
 	        case __NR_geteuid /* 107 */: print_syscall_getuid(ctx); break;
                 case __NR_statfs /* 137 */: printf_syscall_statfs(ctx); break;
