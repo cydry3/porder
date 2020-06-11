@@ -678,7 +678,6 @@ void print_syscall_getuid(struct child_context *ctx)
 {
   if (ctx->start) {
     paren_open();
-    printf("...");
     paren_close();
   }
   if (ctx->end) {
