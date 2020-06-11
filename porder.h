@@ -16,6 +16,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <asm/prctl.h>
+#include <sys/random.h>
 
 #define _GNU_SOURCE
 #include <sys/uio.h>

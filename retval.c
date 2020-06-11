@@ -604,7 +604,7 @@ void print_syscall_set_robust_list(struct child_context *ctx)
 	if (ctx->end) {
 		printf(" = %d", (int)ctx->regs->rax);
 		if ((int)ctx->regs->rax != 0)
-			printf("(err)");
+			 printf("(err)");
 	}
 }
 
@@ -649,6 +649,31 @@ void print_syscall_prlimit64(struct child_context *ctx)
 	}
 }
 
+void as_getrandom_flags(long long unsigned int reg)
+{
+  switch (reg) {
+  case GRND_NONBLOCK: printf("GRND_NONBLOCK"); break;
+  case GRND_RANDOM: printf("GRND_RANDOM"); break;
+  default: break;
+  }
+}
+
+void print_syscall_getrandom(struct child_context *ctx)
+{
+  if (ctx->start) {
+    paren_open();
+    ptr_as(ctx->regs->rdi);
+    arg_sep();
+    int_as(ctx->regs->rsi);
+    arg_sep();
+    as_getrandom_flags(ctx->regs->rdx);
+    paren_close();
+  }
+  if (ctx->end) {
+    print_syscall_retval(ctx);
+  }
+}
+
 void print_syscall_args_retval(struct child_context *ctx)
 {
 	switch (ctx->regs->orig_rax) {
@@ -685,6 +710,7 @@ void print_syscall_args_retval(struct child_context *ctx)
 		case __NR_openat /* 257 */: print_syscall_openat(ctx); break;
 		case __NR_set_robust_list /* 273 */: print_syscall_set_robust_list(ctx); break;
 		case __NR_prlimit64 /* 302 */: print_syscall_prlimit64(ctx); break;
-		default: print_syscall_args_retval_unimplemented(ctx); break;
+	        case __NR_getrandom /* 318 */: print_syscall_getrandom(ctx); break;
+	        default: print_syscall_args_retval_unimplemented(ctx); break;
 	}
 }
